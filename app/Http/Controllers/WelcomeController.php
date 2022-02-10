@@ -27,5 +27,58 @@ class WelcomeController extends Controller
         $active_nav = "0";
         return view('frontend.product', compact( 'active_nav','product', 'category'));
     }
+
+    public function store(Request $request){
+
+        $active_nav = "2";
+     
+        if($request->filter_show == null){
+            $filter = '';
+            $pag = 20;
+        }
+        else{
+            switch ($request->filter_show) {
+                case (0):
+                    $filter = 0;
+                    $pag = 20;
+                    break;
+                case (1):
+                    $filter = 1;
+                    $pag = 50;
+                    break;
+                case (2):
+                    $filter = 2;
+                    $pag = 100;
+                    break;
+                default:
+                    $filter = 0;
+                    $pag = 20;
+            }
+
+        }
+
+        if($request->input('category') ==null || $request->category == 'all'){
+            $ck='all';
+            $products = Product::orderBy('id', 'desc')->paginate($pag);
+            return view('frontend.store', compact('products', 'active_nav','filter', 'ck'));
+            if (!$products)
+            return abort('404');
+          
+        }else{
+              $ck = $request->category;
+            $products = Product::where('categories_id', $request->input('category'))->orderBy('id', 'desc')->paginate($pag);
+            if (!$products)
+                return abort('404');
+
+            return view('frontend.store', compact('products', 'active_nav', 'filter','ck'));
+
+
+        }
+        
+      
+       
+       
+        
+    }
   
 }

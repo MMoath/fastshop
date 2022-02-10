@@ -48,7 +48,7 @@
 						</td>
 					</tr>
 					<tr>
-						<th scope="col">ID</th>
+						<th scope="col"></th>
 						<th scope="col">Product Name</th>
 						<th scope="col">Price</th>
 						<th scope="col">image</th>
@@ -56,10 +56,12 @@
 					</tr>
 				</thead>
 				<tbody>
+					<?php $number = 0; ?>
 					@forelse(yourCart() as $pro)
+					<?php $number++ ?>
 
 					<tr>
-						<th>{{$pro ->id }}</th>
+						<th>{{ $number}}</th>
 						<td><a title="view" href="{{ url('products/'.$pro->product->id.'/view') }}">{{$pro->product->name}} <i class="fa fa-external-link"></i> </a></td>
 						<td>$ {{$pro->product->price}}</td>
 						<td><img src="{{  URL::asset('imges/products/'.$pro->product->img); }}" alt="" style="max-height:10rem;"></td>

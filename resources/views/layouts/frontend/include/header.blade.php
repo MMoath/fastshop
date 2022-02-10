@@ -233,6 +233,7 @@
                 <!-- NAV -->
                 <ul class="main-nav nav navbar-nav">
                     <li class="{{ $active_nav == '1' ? 'active' : ''}}"><a title="Home" href="{{ url('/') }}">Home</a></li>
+                    <li class="{{ $active_nav == '2' ? 'active' : ''}}"><a title="Store" href="{{ url('store') }}">Store</a></li>
                     <!-- <li class="{{ $active_nav == '2' ? 'active' : ''}}"><a title="Discounts" href="#">Discounts</a></li> -->
                     <li class="{{ $active_nav == '3' ? 'active' : ''}}">
                         <a title="Categories" id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
@@ -242,11 +243,9 @@
                             @empty
                             <li><a href="#" class="dropdown-item">No data </a></li>
                             @endforelse
-
-
-
                         </ul>
                     </li>
+
                     <!-- <li class="{{ $active_nav == '4' ? 'active' : ''}}"><a title="Customers Service" href="#">Customers Service</a></li>
                     <li class="{{ $active_nav == '5' ? 'active' : ''}}"><a title="Contact Us" href="#">Contact Us</a></li>
                     <li class="{{ $active_nav == '6' ? 'active' : ''}}"><a title="About Us" href="#">About Us</a></li>

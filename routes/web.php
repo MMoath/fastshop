@@ -22,6 +22,12 @@ Route::get('/welcome', [App\Http\Controllers\WelcomeController::class, 'index'])
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::group(["prefix" => "products"], function () {
     Route::get('{id}/view', [App\Http\Controllers\WelcomeController::class, 'viewProduct']);
+});
+
+Route::group(["prefix" => "store", "middleware" => "auth.check"], function () {
+    
+    Route::get('/',[App\Http\Controllers\WelcomeController::class, 'store'])->name('store');
+    Route::POST('/', [App\Http\Controllers\WelcomeController::class, 'store'])->name('store');
 
 });
 
