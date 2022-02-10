@@ -19,4 +19,13 @@ class Order extends Model
         'created_at',
         'updated_at',
     ];
+
+    public function user(){
+        return $this->belongsTo('App\Models\User', 'user_id');
+    }
+
+    public function products()
+    {
+        return $this->belongsToMany('App\Models\Admin\Product', 'order_details', 'order_id', 'product_id');
+    }
 }

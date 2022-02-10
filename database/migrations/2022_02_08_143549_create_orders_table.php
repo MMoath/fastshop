@@ -24,7 +24,7 @@ class CreateOrdersTable extends Migration
             $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
 
-            $table->enum('status', ['1', '2', '3','4'])->nullable()->default(1);  //1-Under Order  2-Under Preparing 3-Under Delivery 4-Recipient
+            $table->enum('status', ['1', '2', '3','4'])->nullable()->default(1);  //1-Under Order  2-Under Preparing 3-Under Delivery 4-Recipient 5- Order denied
             
 
             $table->timestamps();

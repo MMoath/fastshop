@@ -61,4 +61,8 @@ class User extends Authenticatable
     public function products(){
         return $this->belongsToMany('App\Models\Admin\Product', 'carts', 'user_id', 'product_id');
     }
+
+    public function orders(){
+        return $this->hasMany('App\Models\Frontend\Order', 'user_id');
+    } 
 }

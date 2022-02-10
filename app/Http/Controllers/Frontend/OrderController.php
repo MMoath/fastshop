@@ -15,6 +15,24 @@ class OrderController extends Controller
         $this->middleware('auth.check');
     }
 
+    public function index()
+    {
+        $order = Order::where('user_id',userId())->get();
+        if (!$order)
+            return abort('404');
+      
+        if (count($order) <= 0) {
+            $alert = alert('error', 'You have no Orders !', 'sweet');
+            return redirect()->route('welcome')->with($alert);
+        } else {
+            $active_nav = '';
+            $user = User::find(userId());
+            if (!$user)
+                return abort('404');
+            return view('frontend.order.index', compact('active_nav', 'user'));
+        }
+    }
+
     public function add(){
       if(yourCart()->total() <= 0){
             $alert = alert('error', 'You have no products in the cart !', 'sweet');

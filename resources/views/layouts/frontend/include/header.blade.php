@@ -53,7 +53,7 @@
                 <ul class="header-links pull-left">
                     @auth
                     <li><a><i class="fa fa-user-o"></i></a><span class="total-maney">My Account | </span><a href="#" title="My Account"> {{ Auth::user()->name }}</a></li>
-
+                    <li><a title="Order" href="{{ route('order') }}">Your Order</a></li>
                     @else
                     <li><a href="#"><i class="fa fa-phone"></i> +967 774 474 100</a></li>
                     <!-- <li><a href="#"><i class="fa fa-envelope-o"></i> mohammed.moath1@gmail.com</a></li>
@@ -68,7 +68,7 @@
                     @if (Route::has('login'))
                     @auth
                     <!-- <li><a><i class="fa fa-dollar"></i> USD</a></li> -->
-                    <li><span class="total-maney"><i class="fa fa-dollar"></i> Total :  ( {{sumPrice()}} ) USD</span></li>
+                    <li><span class="total-maney"><i class="fa fa-dollar"></i> Total : ( {{sumPrice()}} ) USD</span></li>
                     <li><a title="Logout" href="{{ route('logout') }}" onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
                             <i class="fa fa-fw fa-sign-out"></i>{{ __('Logout') }}

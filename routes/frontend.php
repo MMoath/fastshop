@@ -43,6 +43,7 @@ Route::group(["namespace" => "Frontend"], function () {
     Route::group(["prefix" => "order", "middleware" => "auth.check"], function () {
         Route::get('add', [OrderController::class, 'add'])->name('add-order');
         Route::POST('place', [OrderController::class, 'save'])->name('place.order');
+        Route::get('/', [OrderController::class, 'index'])->name('order');
        
 
     });
