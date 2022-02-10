@@ -23,7 +23,7 @@
                         <h3 class="footer-title">Top Categories</h3>
                         <ul class="footer-links">
                             @forelse(categories() as $cat)
-                            <li><a title="{{$cat->name}}" href="#">{{$cat->name}}</a></li>
+                            <li><a title="{{$cat->name}}" href="{{ route('category',$cat->id) }}">{{$cat->name}}</a></li>
                             @empty
                             NULL
                             @endforelse

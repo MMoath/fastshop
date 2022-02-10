@@ -52,8 +52,8 @@
                 @if (Route::has('login'))
                 <ul class="header-links pull-left">
                     @auth
-                    <li><a><i class="fa fa-user-o"></i></a><span class="total-maney">My Account | </span><a href="#" title="My Account"> {{ Auth::user()->name }}</a></li>
-                    <li><a title="Order" href="{{ route('order') }}">Your Order</a></li>
+                    <li><a><i class="fa fa-user-o"></i></a><span class="total-maney">My Account | </span><a href="{{ route('profile') }}" title="My Account"> {{ Auth::user()->name }}</a></li>
+                    <li><a title="Order" href="{{ route('order') }}">Your Order ( {{ user()->orders->count() }} )</a></li>
                     @else
                     <li><a href="#"><i class="fa fa-phone"></i> +967 774 474 100</a></li>
                     <!-- <li><a href="#"><i class="fa fa-envelope-o"></i> mohammed.moath1@gmail.com</a></li>
@@ -239,7 +239,7 @@
                         <a title="Categories" id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
                         <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
                             @forelse(categories() as $cat)
-                            <li><a href="#" class="dropdown-item" value="{{$cat->id}}">{{$cat->name}} </a></li>
+                            <li><a href="{{ route('category',$cat->id) }}" class="dropdown-item" value="{{$cat->id}}">{{$cat->name}} </a></li>
                             @empty
                             <li><a href="#" class="dropdown-item">No data </a></li>
                             @endforelse

@@ -24,10 +24,10 @@ Route::group(["prefix" => "products"], function () {
     Route::get('{id}/view', [App\Http\Controllers\WelcomeController::class, 'viewProduct']);
 });
 
-Route::group(["prefix" => "store", "middleware" => "auth.check"], function () {
-    
+Route::group(["prefix" => "store"], function () {
     Route::get('/',[App\Http\Controllers\WelcomeController::class, 'store'])->name('store');
     Route::POST('/', [App\Http\Controllers\WelcomeController::class, 'store'])->name('store');
+    Route::get('category/{id}', [App\Http\Controllers\WelcomeController::class, 'category'])->name('category');
 
 });
 

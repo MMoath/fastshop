@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\OrderController;
+use App\Http\Controllers\Frontend\AccountController;
 
 
 /*
@@ -44,8 +45,11 @@ Route::group(["namespace" => "Frontend"], function () {
         Route::get('add', [OrderController::class, 'add'])->name('add-order');
         Route::POST('place', [OrderController::class, 'save'])->name('place.order');
         Route::get('/', [OrderController::class, 'index'])->name('order');
-       
+    });
 
+    Route::group(["prefix" => "account", "middleware" => "auth.check"], function () {
+       
+        Route::get('/', [AccountController::class, 'index'])->name('profile');
     });
 
 });

@@ -91,9 +91,9 @@
 								@csrf
 
 								<select name="filter_show" class="input-select" onchange="this.form.submit();">
-									<option value="0" {{ ($filter == 0 )  ? 'selected' : '' }}>20</option>
+									<option value="0" {{ ($filter == 0 )  ? 'selected' : '' }}>100</option>
 									<option value="1" {{ ($filter == 1 )  ? 'selected' : '' }}>50</option>
-									<option value="2" {{ ($filter == 2 )  ? 'selected' : '' }}>100</option>
+									<option value="2" {{ ($filter == 2 )  ? 'selected' : '' }}>20</option>
 								</select>
 							</form>
 

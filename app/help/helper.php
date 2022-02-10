@@ -49,6 +49,16 @@ function userId(){
 }
 
 /*
+* Function Of GET User 
+*    
+*/
+function user()
+{
+    $user = User::find(userId());
+    return  $user;
+}
+
+/*
 * Function Of GET Product In Cart For User If Auth Is Suecsse
 *   
 */

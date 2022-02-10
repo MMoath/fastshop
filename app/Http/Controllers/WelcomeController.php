@@ -29,18 +29,19 @@ class WelcomeController extends Controller
     }
 
     public function store(Request $request){
+        
 
         $active_nav = "2";
      
         if($request->filter_show == null){
             $filter = '';
-            $pag = 20;
+            $pag = 100;
         }
         else{
             switch ($request->filter_show) {
                 case (0):
                     $filter = 0;
-                    $pag = 20;
+                    $pag = 100;
                     break;
                 case (1):
                     $filter = 1;
@@ -48,11 +49,11 @@ class WelcomeController extends Controller
                     break;
                 case (2):
                     $filter = 2;
-                    $pag = 100;
+                    $pag = 20;
                     break;
                 default:
                     $filter = 0;
-                    $pag = 20;
+                    $pag = 100;
             }
 
         }
@@ -78,6 +79,21 @@ class WelcomeController extends Controller
       
        
        
+        
+    }
+
+    public function category($id){
+     
+        $active_nav = "3";
+        $filter = '';
+        $pag = 100;
+        $ck = $id;
+
+        $products = Product::where('categories_id', $id)->orderBy('id', 'desc')->paginate($pag);
+        if (!$products)
+            return abort('404');
+
+        return view('frontend.store', compact('products', 'active_nav', 'filter', 'ck'));
         
     }
   
