@@ -18,6 +18,7 @@ class CreateCategoriesTable extends Migration
             $table->string('name')->require()->unique(); 
             $table->string('description')->nullable();
             $table->string('notes')->nullable();
+            $table->string('picture')->nullable();
 
             $table->integer('created_by')->unsigned()->nullable();
             $table->foreign('created_by')->references('id')->on('users');

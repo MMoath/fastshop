@@ -52,7 +52,7 @@
                 @if (Route::has('login'))
                 <ul class="header-links pull-left">
                     @auth
-                    <li><a><i class="fa fa-user-o"></i></a><span class="total-maney">My Account | </span><a href="{{ route('profile') }}" title="My Account"> {{ Auth::user()->name }}</a></li>
+                    <li><a><i class="fa fa-user-o"></i></a><span class="total-maney">My Account | </span><a href="{{ route('account') }}" title="My Account"> {{ Auth::user()->name }}</a></li>
                     <li><a title="Order" href="{{ route('order') }}">Your Order ( {{ user()->orders->count() }} )</a></li>
                     @else
                     <li><a href="#"><i class="fa fa-phone"></i> +967 774 474 100</a></li>
@@ -115,20 +115,18 @@
                     <!-- SEARCH BAR -->
                     <div class="col-md-6">
                         <div class="header-search">
-                            <form>
-                                <select class="input-select">
+                            <form method="POST" action="{{ route('search') }}">
+                                @csrf
+                                <select class="input-select" name="category">
                                     <option value="0">All Categories</option>
                                     @forelse(categories() as $cat)
                                     <option value="{{$cat->id}}">{{$cat->name}}</option>
                                     @empty
                                     No data
                                     @endforelse
-
-
-
                                 </select>
-                                <input class="input" placeholder="Search here">
-                                <button title="Search" class="search-btn">Search</button>
+                                <input name="search" class="input" placeholder="Search here" required>
+                                <button type="submit" title="Search" class="search-btn">Search</button>
                             </form>
                         </div>
                     </div>
@@ -142,10 +140,10 @@
 
                             <!-- Wishlist -->
                             <div>
-                                <a title="Wishlist" href="#">
+                                <a title="Wishlist" href="{{ route('wishlist') }}">
                                     <i class="fa fa-heart-o"></i>
                                     <span>Your Wishlist</span>
-                                    <div class="qty">2</div>
+                                    <div class="qty">{{ yourWishlist()->total() }}</div>
                                 </a>
                             </div>
                             <!-- /Wishlist -->

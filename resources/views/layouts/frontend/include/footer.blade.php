@@ -38,11 +38,11 @@
                     <div class="footer">
                         <h3 class="footer-title">Information</h3>
                         <ul class="footer-links">
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Contact Us</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Orders and Returns</a></li>
-                            <li><a href="#">Terms & Conditions</a></li>
+                            <li><a href="{{ route('build.up') }}">About Us</a></li>
+                            <li><a href="{{ route('build.up') }}">Contact Us</a></li>
+                            <li><a href="{{ route('build.up') }}">Privacy Policy</a></li>
+                            <li><a href="{{ route('build.up') }}">Orders and Returns</a></li>
+                            <li><a href="{{ route('build.up') }}">Terms & Conditions</a></li>
                         </ul>
                     </div>
                 </div>
@@ -51,11 +51,11 @@
                     <div class="footer">
                         <h3 class="footer-title">Service</h3>
                         <ul class="footer-links">
-                            <li><a href="#">My Account</a></li>
-                            <li><a href="#">View Cart</a></li>
-                            <li><a href="#">Wishlist</a></li>
-                            <li><a title="Order" href="{{ route('order') }}">Your Order</a></li>
-                            <li><a href="#">Help</a></li>
+                            <li><a title="Account" href="{{ route('account') }}">Account</a></li>
+                            <li><a title="Cart" href="{{ route('cart') }}">Cart</a></li>
+                            <li><a title="Wishlist" href="{{ route('wishlist') }}">Wishlist</a></li>
+                            <li><a title="Order" href="{{ route('order') }}">Order</a></li>
+                            <li><a title="Help" href="{{ route('build.up') }}">Help</a></li>
                         </ul>
                     </div>
                 </div>

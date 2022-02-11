@@ -44,8 +44,8 @@
 							<a href="{{ route('order') }}">Your Order</a>
 						</li>
 						<li class="list-group-item ">
-							<span class="badge">14</span>
-							<a href="#">Your Wishlist</a>
+							<span class="badge"> ( {{ yourWishlist()->total() }} )</span>
+							<a href="{{ route('wishlist') }}">Your Wishlist</a>
 						</li>
 					</ul>
 				</div>
@@ -71,11 +71,15 @@
 				</div>
 				@endif
 				<div class="panel panel-default">
-					<div class="panel-heading text-right">
-						<div class="btn-group btn-group-sm" role="group">
-							<button title="edit" type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-edit">Edit</button>
-							<button title="change password" type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-change_password">Change Password</button>
+					<div class="panel-heading">
+						<span><b>YOUR PROFILE</b></span>
+						<div class=" text-right">
+							<div class="btn-group btn-group-sm" role="group">
+								<button title="edit" type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-edit">Edit</button>
+								<button title="change password" type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-change_password">Change Password</button>
+							</div>
 						</div>
+
 					</div>
 					<div class="panel-body">
 						<div class="card-body box-profile">

@@ -24,6 +24,9 @@ class CreateProductsTable extends Migration
             $table->integer('categories_id')->unsigned()->nullable();
             $table->foreign('categories_id')->references('id')->on('categories');
 
+            $table->integer('show_status')->nullable();
+           
+
             $table->integer('created_by')->unsigned()->nullable();
             $table->foreign('created_by')->references('id')->on('users');
 

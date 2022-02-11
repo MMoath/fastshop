@@ -1,9 +1,12 @@
 <?php
 
-use App\Models\Admin\Category;
-use App\Models\Frontend\Cart;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Admin\Category;
+use App\Models\Frontend\Cart;
+use App\Models\Frontend\Wishlist;
+
+
 
 /*
 * function number one of th alert 
@@ -35,7 +38,7 @@ function image($path_image)
 *   
 */
 function categories(){
-    $categories = Category::select('id', 'name')->get();;
+    $categories = Category::select('id', 'name', 'picture')->get();;
     return  $categories;
 }
 
@@ -77,6 +80,19 @@ function sumPrice(){
     $cart_item = $user->products->sum('price');
     return  $cart_item;
 }
+
+/*
+* Function Of GET Product In Cart For User If Auth Is Suecsse
+*   
+*/
+function yourWishlist()
+{
+    $user = Auth::user()->id;
+    $wishlist_item = Wishlist::where('user_id', $user)->paginate(100);
+    return  $wishlist_item;
+}
+
+
 
 
 

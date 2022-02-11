@@ -18,8 +18,17 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
+Route::get('build-up', function () {
+    $alert = alert('', 'This page is under construction, thanks for your understanding.', 'sweet');
+    return redirect()->route('welcome')->with($alert);
+})->name('build.up');
+
+
+
 Route::get('/welcome', [App\Http\Controllers\WelcomeController::class, 'index'])->name('welcome');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::POST('search', [App\Http\Controllers\WelcomeController::class, 'search'])->name('search');
+
 Route::group(["prefix" => "products"], function () {
     Route::get('{id}/view', [App\Http\Controllers\WelcomeController::class, 'viewProduct']);
 });

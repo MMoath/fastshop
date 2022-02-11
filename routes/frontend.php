@@ -5,6 +5,7 @@ use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\AccountController;
+use App\Http\Controllers\Frontend\WishlistController;
 
 
 /*
@@ -35,22 +36,29 @@ use App\Http\Controllers\Frontend\AccountController;
 Route::group(["namespace" => "Frontend"], function () {   
     Route::get('/', [IndexController::class, 'index'])->name('index')->middleware("admin.redirect", "check.account.status");
 
-    Route::group(["prefix" => "cart", "middleware"=>"auth.check"], function () {
+    Route::group(["prefix" => "cart"], function () {
         Route::get('/', [CartController::class, 'index'])->name('cart');
         Route::get('{id}/add', [CartController::class, 'add'])->name('add-to-cart');
         Route::get('{id}/remove', [CartController::class, 'remove'])->name('remove-to-cart');
     });
 
-    Route::group(["prefix" => "order", "middleware" => "auth.check"], function () {
+    Route::group(["prefix" => "order"], function () {
         Route::get('add', [OrderController::class, 'add'])->name('add-order');
         Route::POST('place', [OrderController::class, 'save'])->name('place.order');
         Route::get('/', [OrderController::class, 'index'])->name('order');
     });
 
-    Route::group(["prefix" => "account", "middleware" => "auth.check"], function () {
-        Route::get('profile', [AccountController::class, 'index'])->name('profile');
+    Route::group(["prefix" => "account"], function () {
+        Route::get('/', [AccountController::class, 'index'])->name('account');
         Route::POST('profile/update', [AccountController::class, 'update'])->name('update.profile');
         Route::POST('profile/change-password', [AccountController::class, 'changePassword'])->name('change.password.profile'); 
+    });
+
+    Route::group(["prefix" => "wishlist"], function () {
+        Route::get('/', [WishlistController::class, 'index'])->name('wishlist');
+        Route::get('{id}/remove', [WishlistController::class, 'remove'])->name('remove.from .wishlist');
+       
+    
     });
 
 });

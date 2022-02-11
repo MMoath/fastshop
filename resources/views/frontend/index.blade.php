@@ -1,5 +1,43 @@
 @extends('layouts.frontend.master')
 @section('content')
+
+<!-- SECTION -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <?php $namber = 0; ?>
+            @forelse (categories() as $cat)
+            <?php $namber++; ?>
+
+            @if($namber <= 3)
+            <!-- shop -->
+            <div class="col-md-4 col-xs-6">
+                <div class="shop">
+                    <div class="shop-img" style="max-height: 240px;">
+                        <img src="{{ URL::asset('imges/categories/'.$cat->picture); }}" alt=" {{ $cat->name ? $cat->name : ''}} Collection " style="max-height: 25rem;">
+                    </div>
+                    <div class="shop-body">
+                        <h3>{{ $cat->name ? $cat->name : ''}}<br>Collection</h3>
+                        <a href="{{ route('category',$cat->id) }}" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <!-- /shop -->
+            @endif
+            @empty
+
+            @endforelse
+
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /SECTION -->
+
+
 <!-- SECTION -->
 <div class="section">
     <!-- container -->

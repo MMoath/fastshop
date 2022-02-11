@@ -96,5 +96,23 @@ class WelcomeController extends Controller
         return view('frontend.store', compact('products', 'active_nav', 'filter', 'ck'));
         
     }
+    public function search(Request $request){
+      
+        if($request->category == 0){
+           
+            $products = Product::where('name', 'like', "$request->search%")->get();
+            if (!$products)
+            return abort('404');
+
+        }else{
+            $products = Product::where('categories_id', $request->category)->where('name', 'like', "$request->search%")->get();
+            if (!$products)
+                return abort('404');
+        }
+       
+        $active_nav = "";
+        return view('frontend.search', compact('products', 'active_nav'));
+    }
+    
   
 }
