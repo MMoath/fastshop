@@ -28,7 +28,7 @@
 		<div class="row">
 			<div class="col-xs-12 col-md-2">
 				<a class="thumbnail">
-					<img src="{{$user->picture}}" alt="{{ $user->name }} photo">
+					<img src="{{ URL::asset('imges/users/'.$user->picture); }}" alt="{{ $user->name }} photo" style="height: 15rem; width:15rem;">
 				</a>
 				<div class="list-group">
 					<a class="list-group-item active">
@@ -61,6 +61,15 @@
 
 			</div>
 			<div class="col-xs-12 col-md-9">
+				@if(count($errors)>0)
+				<div class="alert alert-warning alert-dismissible">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+					<h5><i class="icon fas fa-exclamation-triangle"></i> Alert!</h5>
+					@foreach($errors->all() as $error)
+					<li>{{ $error }}</li>
+					@endforeach
+				</div>
+				@endif
 				<div class="panel panel-default">
 					<div class="panel-heading text-right">
 						<div class="btn-group btn-group-sm" role="group">
@@ -70,10 +79,10 @@
 					</div>
 					<div class="panel-body">
 						<div class="card-body box-profile">
-							<div class="text-center">
-								<img class="profile-user-img img-fluid img-circle" src='{{ URL::asset("$user->picture"); }}' alt="User profile picture">
+							<div class="text-center img-circle thumbnail">
+								<img class=" profile-user-img img-fluid img-circle" src="{{ URL::asset('imges/users/'.$user->picture); }}" alt="User profile picture" style="height: 25rem;width:25rem">
 							</div>
-
+							<br>
 							<h3 class="profile-username text-center"><em>{{ $user->name ? $user->name : 'No data'}}</em></h3>
 
 							<p class="text-muted text-center">{{ $user->email ? $user->email : 'No data'}}</p>

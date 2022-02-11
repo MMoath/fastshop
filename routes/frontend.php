@@ -33,7 +33,7 @@ use App\Http\Controllers\Frontend\AccountController;
 
 
 Route::group(["namespace" => "Frontend"], function () {   
-    Route::get('/', [IndexController::class, 'index'])->name('index')->middleware("admin.redirect");
+    Route::get('/', [IndexController::class, 'index'])->name('index')->middleware("admin.redirect", "check.account.status");
 
     Route::group(["prefix" => "cart", "middleware"=>"auth.check"], function () {
         Route::get('/', [CartController::class, 'index'])->name('cart');
@@ -48,8 +48,9 @@ Route::group(["namespace" => "Frontend"], function () {
     });
 
     Route::group(["prefix" => "account", "middleware" => "auth.check"], function () {
-       
-        Route::get('/', [AccountController::class, 'index'])->name('profile');
+        Route::get('profile', [AccountController::class, 'index'])->name('profile');
+        Route::POST('profile/update', [AccountController::class, 'update'])->name('update.profile');
+        Route::POST('profile/change-password', [AccountController::class, 'changePassword'])->name('change.password.profile'); 
     });
 
 });
