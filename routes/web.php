@@ -27,7 +27,7 @@ Route::get('build-up', function () {
 
 Route::get('/welcome', [App\Http\Controllers\WelcomeController::class, 'index'])->name('welcome');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('search', [App\Http\Controllers\WelcomeController::class, 'search'])->name('search');
+Route::any('search', [App\Http\Controllers\WelcomeController::class, 'search'])->name('search');
 
 
 Route::group(["prefix" => "products"], function () {

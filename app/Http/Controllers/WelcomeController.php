@@ -101,10 +101,18 @@ class WelcomeController extends Controller
     public function search(Request $request){
 
         $q = $request->search;
-        $products = Product::where('name', 'LIKE', '%' . $q . '%')
-                            ->orWhere('price', 'LIKE', '%' . $q . '%')->paginate(100);
         $active_nav = "";
-        return view('frontend.search', compact('products', 'active_nav'));
+     
+            $products = Product::where('name','like',"%$q%")
+                                ->orWhere('price','like',"%$q%")
+                                ->paginate(1)
+                                ->setPath('');
+            $products->appends ( array (
+                'search' => $q ));
+        if (!$products)
+            return abort('404');
+            return view('frontend.search', compact('products', 'active_nav'));
+
     }
     
   
