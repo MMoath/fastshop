@@ -10,7 +10,7 @@
 			<div class="col-md-12">
 				<ul class="breadcrumb-tree">
 					<li><a href="{{ route('welcome') }}">Home</a></li>
-					<li><a href="{{ url('categories/'. $product->category->id.'/view') }}">{{ isset( $product->category->name) !=null ?  $product->category->name : 'NULL'}}</a></li>
+					<li><a href="{{ route('category',$product->category->id) }}">{{ isset( $product->category->name) !=null ?  $product->category->name : 'NULL'}}</a></li>
 					<li class="active"><b>{{ $product->name}}</b></li>
 				</ul>
 			</div>
@@ -121,15 +121,20 @@
 
 					</div>
 
-
+					@php $id="$product->id"; @endphp
 					<ul class="product-btns">
-						<li><a href="#"><i class="fa fa-heart-o"></i> add to wishlist</a></li>
+						@if(checkWishlist($id) == "No")
+						<li><a title="add to wishlist" href="{{ route('add.to.wishlist',$product->id) }}"><i class="fa fa-heart-o"></i> add to wishlist</a></li>
+						@endif
+						@if(checkWishlist($id) == "Yes")
+						<li><i class="fa fa-heart" style="color: red;"></i> On your wishlist </li>
+						@endif
 						<!-- <li><a href="#"><i class="fa fa-exchange"></i> add to compare</a></li> -->
 					</ul>
 
 					<ul class="product-links">
 						<li>Category:</li>
-						<li><a href="{{ url('categories/'. $product->category->id.'/view') }}">{{ isset( $product->category->name) !=null ?  $product->category->name : 'NULL'}}</a></li>
+						<li><a href="{{ route('category',$product->category->id) }}">{{ isset( $product->category->name) !=null ?  $product->category->name : 'NULL'}}</a></li>
 					</ul>
 
 					<ul class="product-links">
@@ -404,8 +409,15 @@
 												<h4 class="product-price">$ {{ $pro->price ? $pro->price : ''}}</h4>
 												<div class="product-rating">
 												</div>
+												@php $id="$pro->id"; @endphp
 												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+													@if(checkWishlist($id) == "No")
+													<button class="add-to-wishlist"><a href="{{ route('add.to.wishlist',$pro->id) }}"><i class="fa fa-heart-o"></i></a><span class="tooltipp">add to wishlist</span></button>
+													@endif
+													@if(checkWishlist($id) == "Yes")
+													<button class="add-to-wishlist" disabled><i class="fa fa-heart" style="color: red;"></i><span class="tooltipp">on your wishlist</span></button>
+													@endif
+
 													<!-- <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button> -->
 													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
 												</div>

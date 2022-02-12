@@ -7,13 +7,22 @@
                           <span aria-hidden="true">&times;</span>
                       </button>
                   </div>
-                  <form method="POST" action="{{ route('create.categories') }}">
+                  <form method="POST" action="{{ route('create.categories') }}" enctype="multipart/form-data">
                       @csrf
                       <div class="modal-body">
                           <div class="form-group">
                               <label for="name">{{ __('Name') }}</label>
                               <input placeholder="{{ __('admin.Name Categories') }}" id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
                               @error('name')
+                              <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $message }}</strong>
+                              </span>
+                              @enderror
+                          </div>
+                          <div class="form-group">
+                              <label for="picture">{{ __('Thumbnail') }}</label>
+                              <input class="form-control @error('picture') is-invalid @enderror" type="file" id="picture" name="picture" multiple>
+                              @error('picture')
                               <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
                               </span>
@@ -37,6 +46,7 @@
                               </span>
                               @enderror
                           </div>
+
                       </div>
                       <div class="modal-footer justify-content-between">
                           <div class="btn-group  btn-group-sm" role="group" aria-label="Basic">

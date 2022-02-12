@@ -136,8 +136,15 @@
 										<i class="fa fa-star"></i>
 										<i class="fa fa-star"></i>
 									</div>
+									@php $id="$pro->id"; @endphp
 									<div class="product-btns">
-										<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+										@if(checkWishlist($id) == "No")
+										<button class="add-to-wishlist"><a href="{{ route('add.to.wishlist',$pro->id) }}"><i class="fa fa-heart-o"></i></a><span class="tooltipp">add to wishlist</span></button>
+										@endif
+										@if(checkWishlist($id) == "Yes")
+										<button class="add-to-wishlist" disabled><i class="fa fa-heart" style="color: red;"></i><span class="tooltipp">on your wishlist</span></button>
+										@endif
+
 										<!-- <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button> -->
 										<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
 									</div>

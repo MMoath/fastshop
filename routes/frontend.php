@@ -38,7 +38,7 @@ Route::group(["namespace" => "Frontend"], function () {
 
     Route::group(["prefix" => "cart"], function () {
         Route::get('/', [CartController::class, 'index'])->name('cart');
-        Route::get('{id}/add', [CartController::class, 'add'])->name('add-to-cart');
+        Route::get('{id}/add', [CartController::class, 'add'])->name('add.to.cart');
         Route::get('{id}/remove', [CartController::class, 'remove'])->name('remove-to-cart');
     });
 
@@ -56,10 +56,12 @@ Route::group(["namespace" => "Frontend"], function () {
 
     Route::group(["prefix" => "wishlist"], function () {
         Route::get('/', [WishlistController::class, 'index'])->name('wishlist');
-        Route::get('{id}/remove', [WishlistController::class, 'remove'])->name('remove.from .wishlist');
+        Route::get('{id}/add', [WishlistController::class, 'add'])->name('add.to.wishlist');
+        Route::get('{id}/remove', [WishlistController::class, 'remove'])->name('remove.from.wishlist');
        
     
     });
+
 
 });
 

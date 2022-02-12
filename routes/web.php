@@ -27,7 +27,8 @@ Route::get('build-up', function () {
 
 Route::get('/welcome', [App\Http\Controllers\WelcomeController::class, 'index'])->name('welcome');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::POST('search', [App\Http\Controllers\WelcomeController::class, 'search'])->name('search');
+Route::get('search', [App\Http\Controllers\WelcomeController::class, 'search'])->name('search');
+
 
 Route::group(["prefix" => "products"], function () {
     Route::get('{id}/view', [App\Http\Controllers\WelcomeController::class, 'viewProduct']);

@@ -7,10 +7,10 @@
 		<!-- row -->
 		<div class="row">
 			<div class="col-md-12">
-				<h3 class="breadcrumb-header">Your Order</h3>
+				<h3 class="breadcrumb-header">Order</h3>
 				<ul class="breadcrumb-tree">
 					<li><a href="{{ route('welcome') }}">Home</a></li>
-					<li class="active">Your Order</li>
+					<li class="active">Order</li>
 				</ul>
 			</div>
 		</div>
@@ -55,7 +55,7 @@
 										<td>{{ isset($user->email) !=null ? $user->email : 'NULL'}}</td>
 									</tr>
 									<tr>
-										<th scope="row">shopping address</th>
+										<th scope="row">Shiping Address</th>
 										<td>{{ isset($order->address) !=null ? $order->address : 'NULL'}}</td>
 									</tr>
 									<tr>

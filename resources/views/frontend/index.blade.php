@@ -11,24 +11,23 @@
             @forelse (categories() as $cat)
             <?php $namber++; ?>
 
-            @if($namber <= 3)
-            <!-- shop -->
-            <div class="col-md-4 col-xs-6">
-                <div class="shop">
-                    <div class="shop-img" style="max-height: 240px;">
-                        <img src="{{ URL::asset('imges/categories/'.$cat->picture); }}" alt=" {{ $cat->name ? $cat->name : ''}} Collection " style="max-height: 25rem;">
-                    </div>
-                    <div class="shop-body">
-                        <h3>{{ $cat->name ? $cat->name : ''}}<br>Collection</h3>
-                        <a href="{{ route('category',$cat->id) }}" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+            @if($namber <= 3) <!-- shop -->
+                <div class="col-md-4 col-xs-6">
+                    <div class="shop">
+                        <div class="shop-img" style="max-height: 240px;">
+                            <img src="{{ URL::asset('imges/categories/'.$cat->picture); }}" alt=" {{ $cat->name ? $cat->name : ''}} Collection " style="max-height: 25rem;">
+                        </div>
+                        <div class="shop-body">
+                            <h3>{{ $cat->name ? $cat->name : ''}}<br>Collection</h3>
+                            <a href="{{ route('category',$cat->id) }}" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- /shop -->
-            @endif
-            @empty
+                <!-- /shop -->
+                @endif
+                @empty
 
-            @endforelse
+                @endforelse
 
         </div>
         <!-- /row -->
@@ -91,14 +90,23 @@
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
                                             </div>
+
+
+                                            @php $id="$pro->id"; @endphp
                                             <div class="product-btns">
-                                                <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+                                                @if(checkWishlist($id) == "No")
+                                                <button class="add-to-wishlist"><a href="{{ route('add.to.wishlist',$pro->id) }}"><i class="fa fa-heart-o"></i></a><span class="tooltipp">add to wishlist</span></button>
+                                                @endif
+                                                @if(checkWishlist($id) == "Yes")
+                                                <button class="add-to-wishlist" disabled><i class="fa fa-heart" style="color: red;"></i><span class="tooltipp">on your wishlist</span></button>
+                                                @endif
+
                                                 <!-- <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button> -->
-                                                <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+                                                <button class="quick-view" data-toggle="modal" data-target="#produt{{$id}}"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
                                             </div>
                                         </div>
                                         <div class="add-to-cart">
-                                            <button title="add to cart" class="add-to-cart-btn"> <a href="{{ url('cart/'.$pro->id.'/add') }}"> <i class="fa fa-shopping-cart"></i> add to cart</a></button>
+                                            <button title="add to cart" class="add-to-cart-btn  "> <a href="{{ route('add.to.cart',$pro->id) }}"> <i class="fa fa-shopping-cart"></i> add to cart</a></button>
                                         </div>
 
                                     </a>
@@ -110,7 +118,7 @@
                                     NO data.
                                 </div>
                                 @endforelse
-
+                             
                                 <!-- /product -->
 
 
@@ -129,5 +137,5 @@
 </div>
 <!-- /SECTION -->
 
-
+@include('frontend.product.quick_view')
 @stop

@@ -10,6 +10,8 @@ class WelcomeController extends Controller
 {
  
     public function index(){
+        
+       
         $products = Product::orderBy('id', 'desc')->paginate(6);
         if (!$products)
             return abort('404');   
@@ -97,19 +99,10 @@ class WelcomeController extends Controller
         
     }
     public function search(Request $request){
-      
-        if($request->category == 0){
-           
-            $products = Product::where('name', 'like', "$request->search%")->get();
-            if (!$products)
-            return abort('404');
 
-        }else{
-            $products = Product::where('categories_id', $request->category)->where('name', 'like', "$request->search%")->get();
-            if (!$products)
-                return abort('404');
-        }
-       
+        $q = $request->search;
+        $products = Product::where('name', 'LIKE', '%' . $q . '%')
+                            ->orWhere('price', 'LIKE', '%' . $q . '%')->paginate(100);
         $active_nav = "";
         return view('frontend.search', compact('products', 'active_nav'));
     }

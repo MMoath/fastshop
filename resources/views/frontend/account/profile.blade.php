@@ -7,7 +7,7 @@
 		<!-- row -->
 		<div class="row">
 			<div class="col-md-12">
-				<h3 class="breadcrumb-header">My Account</h3>
+				<h3 class="breadcrumb-header"> Account</h3>
 				<ul class="breadcrumb-tree">
 					<li><a href="{{ route('welcome' )}}">Home</a></li>
 					<li class="active">Profile</li>

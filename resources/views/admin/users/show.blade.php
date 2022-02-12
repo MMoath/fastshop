@@ -34,7 +34,7 @@
                     </div>
                     <div class="card-body box-profile">
                         <div class="text-center">
-                            <img class="profile-user-img img-fluid img-circle" src='{{ URL::asset("$user->picture"); }}' alt="User profile picture">
+                            <img class="profile-user-img img-fluid img-circle" src='{{ URL::asset("imges/users/$user->picture"); }}' alt="User profile picture">
                         </div>
 
                         <h3 class="profile-username text-center"><em>{{ $user->name ? $user->name : 'No data'}}</em></h3>

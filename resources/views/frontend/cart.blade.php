@@ -38,7 +38,7 @@
 						</td>
 						<td class="text-right" rowspan="2">
 							@if(yourCart()->total() !=0)
-							<a title="Order New !" type="button" class="btn btn-success primary-btn-order" href="{{ route('add-order') }}"> <i class="fa fa-check"></i> ORDER NOW !</a>
+							<a title="Order New !" type="button" class="btn btn-default primary-btn-order" href="{{ route('add-order') }}"> <i class="fa fa-check"></i> ORDER NOW !</a>
 							@endif
 						</td>
 					</tr>
@@ -65,7 +65,7 @@
 						<td><a title="view" href="{{ url('products/'.$pro->product->id.'/view') }}">{{$pro->product->name}} <i class="fa fa-external-link"></i> </a></td>
 						<td>$ {{$pro->product->price}}</td>
 						<td><img src="{{  URL::asset('imges/products/'.$pro->product->img); }}" alt="" style="max-height:10rem;"></td>
-						<td><a title="remove from cart" type="button" class="btn btn-warning btn-sm primary-btn-remove" href="{{ route('remove-to-cart',$pro->id) }}"> <i class="fa fa-minus-square"></i> Remove From Cart</a></td>
+						<td><a title="remove from cart" type="button" class="btn btn-default btn-sm primary-btn-remove" href="{{ route('remove-to-cart',$pro->id) }}"> <i class="fa fa-minus-square"></i> Remove From Cart</a></td>
 					</tr>
 					@empty
 					<tr>

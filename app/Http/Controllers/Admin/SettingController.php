@@ -31,11 +31,16 @@ class SettingController extends Controller
     public function categoryCreate(Request $request){
         $this->validate($request, [
             'name' => ['required', 'string', 'max:190', 'min:3', 'unique:categories,name'],
+            'picture' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg'],
             'description' => ['nullable', 'string', 'max:190', 'min:5',],
             'notes' => ['nullable','string', 'max:190', 'min:5',]
         ]);
+
+        $image = time() . '.' . $request->picture->extension();
+        $request->picture->move(public_path('imges\categories'), $image);
         Category::create([
             'name' => $request['name'],
+            'picture' =>  $image,
             'description' => $request['description'],
             'notes' => $request['notes'],
             'created_by' => Auth::user()->id,
@@ -43,7 +48,7 @@ class SettingController extends Controller
         $alert = alert('success', 'Operation accomplished successfully', 'toast');
         return redirect()->route('Categories')->with($alert);
         
-    }
+    }  
     
     public function categoryDelete($id){    
         $product = Product::where('categories_id',$id)->count();
@@ -52,7 +57,7 @@ class SettingController extends Controller
             return redirect()->route('Categories')->with($alert);
         }else{
             Category::find($id)->delete();
-            $alert = alert('success', 'Operation accomplished successfully','sweet');
+            $alert = alert('success', 'Operation accomplished successfully','toast');
             return redirect()->route('Categories')->with($alert);
         }   
     }
@@ -75,17 +80,29 @@ class SettingController extends Controller
             ]);
 
         }
+        if ($request->picture == null) {
+            $image =  $old_name->picture; 
+        } else {
+            $this->validate($request, [
+                'picture' => ['required','image','mimes:jpeg,png,jpg,gif,svg'],
+            ]);
+            $image = time() . '.' . $request->picture->extension();
+            $request->picture->move(public_path('imges\categories'), $image);
+        }
         $this->validate($request, [
             'description' => ['nullable', 'string', 'max:190', 'min:5',],
             'notes' => ['nullable', 'string', 'max:190', 'min:5',]
         ]);
         Category::where('id',$request->id)->update([
             'name' => $request['name'],
+            'picture' => $image,
             'description' => $request['description'],
             'notes' => $request['notes'],
         ]);
         $alert = alert('success', 'Operation accomplished successfully', 'toast');
-        return redirect()->route('Categories')->with($alert);
+        return redirect('admin/settings/categories/'.$request->id.'/edit')->with($alert);
+       
+        
     }
     
 }

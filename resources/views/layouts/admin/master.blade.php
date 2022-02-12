@@ -20,11 +20,11 @@
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
         @if (Route::has('login'))
-
+        
 
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="{{ URL::asset('imges\users\user.png'); }}" class="img-circle elevation-2" alt="User Image">
+                <img src="{{ URL::asset('imges/users/'.Auth::user()->picture); }}" class="img-circle elevation-2" alt="User Image">
             </div>
             @auth
             <div class="info">

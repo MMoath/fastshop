@@ -12,9 +12,17 @@
     <div class="container-fluid">
         <div class="row">
             <!-- left column -->
-            <div class="col-md-6 offset-md-3">
+            <div class="col-md-3">
+
+                <img src="{{ URL::asset('imges/categories/'.$category->picture ); }}" alt="{{ $category->name }} Category thumbnail" class="img-thumbnail">
+                <h6 class="text-center">
+                    <hr> Thumbnail
+
+                </h6>
+            </div>
+            <div class="col-md-6">
                 <!-- general form elements -->
-                <form method="POST" action="{{ route('category.update') }}">
+                <form method="POST" action="{{ route('category.update') }}" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="id" value="{{$category->id}}">
                     <div class="card card-secondary">
@@ -31,6 +39,15 @@
                                 <label for="name">{{ __('Name') }}</label>
                                 <input placeholder="{{ __('admin.Name Categories') }}" id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $category->name }}" required autocomplete="name" autofocus>
                                 @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="picture">{{ __('Thumbnail') }}</label>
+                                <input class="form-control @error('picture') is-invalid @enderror" type="file" id="picture" name="picture" multiple>
+                                @error('picture')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

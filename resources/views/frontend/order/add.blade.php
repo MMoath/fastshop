@@ -55,7 +55,7 @@
 							<input id="telephone" class="input form-control " type="tel" name="tel" value="{{ $user->mobile }}" placeholder="Telephone" readonly>
 						</div>
 						<div class="form-group @error('address') has-error @enderror">
-							<label for=" address"><sup style="color: red;">*</sup> DELIVERY ADDRESS</label>
+							<label for=" address"><sup style="color: red;">*</sup> SHIPING ADDRESS</label>
 							<input id="address" class="input form-control " type="text" name="address" value="{{ old('address') }}" placeholder="Delivery address" required>
 							@error('address')
 
@@ -186,7 +186,7 @@
 							I've read and accept the <a href="#">terms & conditions</a>
 						</label>
 					</div>
-					<button type="submit" class="primary-btn order-submit" style="width: 100% ;">Place Your Order</button>
+					<button type="submit" class="primary-btn order-submit  btn-success" style="width: 100% ;">Place Your Order</button>
 				</div>
 				<!-- /Order Details -->
 			</form>

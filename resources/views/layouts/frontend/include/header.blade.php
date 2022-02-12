@@ -53,7 +53,7 @@
                 <ul class="header-links pull-left">
                     @auth
                     <li><a><i class="fa fa-user-o"></i></a><span class="total-maney">My Account | </span><a href="{{ route('account') }}" title="My Account"> {{ Auth::user()->name }}</a></li>
-                    <li><a title="Order" href="{{ route('order') }}">Your Order ( {{ user()->orders->count() }} )</a></li>
+                    <li><a title="Order" href="{{ route('order') }}">Your Order ( {{ user()->orders->count() }} ) </a></li>
                     @else
                     <li><a href="#"><i class="fa fa-phone"></i> +967 774 474 100</a></li>
                     <!-- <li><a href="#"><i class="fa fa-envelope-o"></i> mohammed.moath1@gmail.com</a></li>
@@ -115,9 +115,9 @@
                     <!-- SEARCH BAR -->
                     <div class="col-md-6">
                         <div class="header-search">
-                            <form method="POST" action="{{ route('search') }}">
+                            <form method="GET" action="{{ route('search') }}">
                                 @csrf
-                                <select class="input-select" name="category">
+                                <select class="input-select" name="category" disabled>
                                     <option value="0">All Categories</option>
                                     @forelse(categories() as $cat)
                                     <option value="{{$cat->id}}">{{$cat->name}}</option>
@@ -125,7 +125,7 @@
                                     No data
                                     @endforelse
                                 </select>
-                                <input name="search" class="input" placeholder="Search here" required>
+                                <input name="search" class="input" placeholder="Search here" required value="{{ old('search') }}">
                                 <button type="submit" title="Search" class="search-btn">Search</button>
                             </form>
                         </div>

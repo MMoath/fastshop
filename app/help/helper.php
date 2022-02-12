@@ -92,6 +92,24 @@ function yourWishlist()
     return  $wishlist_item;
 }
 
+function checkWishlist($id)
+{
+    if(Auth::check()){
+        $user = Auth::user()->id;
+    }else{
+         $user =0;
+    }
+    
+    $wishlist_item = Wishlist::where('user_id', $user)->where('product_id',$id)->get();
+    if(count($wishlist_item) == 0){
+        return  'No';
+    }
+    else{
+        return  'Yes';
+    }
+    
+}
+
 
 
 
