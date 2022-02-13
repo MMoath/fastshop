@@ -97,23 +97,23 @@
 
 											@switch($order->status)
 											@case(1)
-											<span class="label label-default">Under Order</span>
+											<span class="label label-default">Pending</span>
 											@break
 
 											@case(2)
-											<span class="label label-info">Under Preparing</span>
+											<span class="label label-info">Processing</span>
 											@break
 
 											@case(3)
-											<span class="label label-warning">Under Delivery <i class="fa fa-truck"></i> </span>
+											<span class="label label-warning">Shipped<i class="fa fa-truck"></i> </span>
 											@break
 
 											@case(4)
-											<span class="label label-success"> Recipient <i class="fa fa-check"></i></span>
+											<span class="label label-success"> Delivered <i class="fa fa-check"></i></span>
 											@break
 
-											@case(4)
-											<span class="label label-danger"> Order denied</span>
+											@case(5)
+											<span class="label label-danger">Fail</span>
 											@break
 
 											@default

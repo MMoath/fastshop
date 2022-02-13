@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\OrderController;
 
 
 
@@ -50,9 +51,14 @@ Route::group(["namespace"=>"Admin"],function(){
         Route::get('{id}/view', [ProductController::class, 'view']);
         Route::get('{id}/delete', [ProductController::class, 'delete']);
         Route::get('{id}/edit', [ProductController::class, 'edit']);
-      
-        
-       
+    });
+
+    Route::group(["prefix" => "orders"], function () {
+        Route::get('/', [OrderController::class, 'index'])->name('admin.orders');
+        Route::get('show/{id}', [OrderController::class, 'show'])->name('admin.order.show');
+        Route::get('print/{id}', [OrderController::class, 'print'])->name('admin.order.print');
+        Route::get('pdf/{id}', [OrderController::class, 'pdf'])->name('admin.order.pdf');
+
     });
 
 

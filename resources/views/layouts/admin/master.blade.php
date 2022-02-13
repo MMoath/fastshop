@@ -20,7 +20,7 @@
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
         @if (Route::has('login'))
-        
+
 
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
@@ -81,6 +81,16 @@
                             </a>
                         </li>
                     </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.orders') }}" class="nav-link">
+                     
+                        <i class=" nav-icon ion ion-bag"></i>
+                        <p>
+                            Orders
+                      
+                        </p>
+                    </a>
                 </li>
 
             </ul>

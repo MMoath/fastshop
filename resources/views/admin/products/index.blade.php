@@ -27,7 +27,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive p-0">
-                        <table class="table table-hover text-nowrap table-bordered ">
+                        <table class="table table-hover text-nowrap table-bordered table-sm">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -40,7 +40,7 @@
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="text-center">
                                 @forelse ($products as $pro)
                                 <tr>
                                     <td>{{ $pro->id }}</td>

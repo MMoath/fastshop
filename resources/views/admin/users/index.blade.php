@@ -29,7 +29,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive p-0">
-                        <table class="table table-hover text-nowrap table-bordered ">
+                        <table class="table table-hover text-nowrap table-bordered table-sm">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -40,7 +40,7 @@
                                     <th class="text-center"><a title=" add users" href="{{ route('add.user') }}" type="button" class="btn btn-outline-secondary btn-sm"><i class="fas fa-user-plus"></i> Add Users </a></th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="text-center">
                                 @forelse ($users as $user)
                                 <tr>
                                     <td>{{ $user->id }}</td>
