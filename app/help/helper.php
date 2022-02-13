@@ -5,6 +5,7 @@ use App\Models\User;
 use App\Models\Admin\Category;
 use App\Models\Frontend\Cart;
 use App\Models\Frontend\Wishlist;
+use App\Models\Frontend\Order;
 
 
 
@@ -92,8 +93,7 @@ function yourWishlist()
     return  $wishlist_item;
 }
 
-function checkWishlist($id)
-{
+function checkWishlist($id){
     if(Auth::check()){
         $user = Auth::user()->id;
     }else{
@@ -110,6 +110,20 @@ function checkWishlist($id)
     
 }
 
+/*
+* Function Of Check stutas of shipped    
+*/
+
+function checkShipped(){
+    $order = Order::where('user_id',userId())
+                    ->where('status',3)
+                    ->count();
+    if($order >=1){
+        return 'yes';
+    }else{
+        return 'no';
+    }                    
+}
 
 
 

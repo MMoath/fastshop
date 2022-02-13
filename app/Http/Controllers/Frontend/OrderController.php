@@ -15,8 +15,7 @@ class OrderController extends Controller
         $this->middleware('auth.check');
     }
 
-    public function index()
-    {
+    public function index(){
         $order = Order::where('user_id',userId())->get();
         if (!$order)
             return abort('404');
@@ -95,6 +94,24 @@ class OrderController extends Controller
             return redirect()->route('welcome')->with($alert);
         
         }
+    }
+
+    public function changeStutas($id, $change){
+        
+        $order = Order::find($id);
+        if (!$order)
+            return abort('404');
+
+        if ($change == 4) {  
+            // Check the status of the change
+            $order->update([
+                'status' => $change,  // Change status
+            ]);
+            
+            $alert = alert('success', 'Thank you dear customer', 'sweet');
+            return redirect()->back()->with($alert); //"admin/orders/show/{$id}"
+        }
+        return redirect()->back();
     }
     
 }

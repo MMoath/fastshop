@@ -1,4 +1,11 @@
 @extends('layouts.frontend.master')
+@section('alert')
+    @auth
+        @if(checkShipped() == 'yes')
+            @include('layouts.massage.shipped_order')
+        @endif
+    @endauth
+@stop
 @section('content')
 
 <!-- SECTION -->
@@ -118,7 +125,7 @@
                                     NO data.
                                 </div>
                                 @endforelse
-                             
+
                                 <!-- /product -->
 
 

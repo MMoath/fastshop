@@ -28,17 +28,60 @@
 		<div class="row">
 			@if(isset($user->orders) !=null)
 			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-				<?php $number = 0; ?>
-				@forelse ($user->orders as $order)
+				<?php
+				$number = 0;
+				$type = "";
+				?>
+				@forelse ($user->orders->sortByDesc('id') as $order)
 				<?php $number++ ?>
 
-				<div class="panel panel-default">
+
+				@switch($order->status)
+				@case(0)
+				<?php $type = "danger"; ?>
+				@break
+				@case(1)
+				<?php $type = "warning"; ?>
+				@break
+
+				@case(2)
+				<?php $type = "info"; ?>
+
+				@break
+
+				@case(3)
+				<?php $type = "success"; ?>
+
+				@break
+
+				@case(4)
+				<?php $type = "default"; ?>
+
+				@break
+
+				@default
+				<?php $type = "default"; ?>
+
+				@endswitch
+
+				<div class="panel panel-{{ $type }}">
 					<div class="panel-heading" role="tab" id="heading-{{ $number }}">
+						@if($order->status == 3)
+						<a href="{{ route('order.change.status',['id'=>$order->id,'change'=>4]) }}" type="button" class="btn btn-success btn-sm" style="float: right;"><i class="fa fa-check"></i> Confirm receipt of this request</a>
+						@endif
 						<h4 class="panel-title">
+
 							<a title="veiw" class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-{{ $number }}" aria-expanded="false" aria-controls="collapse-{{ $number }}">
+								@if($order->status == 4)
+								<i class="fa fa-check"></i> Order Delivered
+								@else
 								Order ( {{ $number }} )
+								@endif
+
 							</a>
+
 						</h4>
+
 					</div>
 					<div id="collapse-{{ $number }}" class="panel-collapse collapse " role="tabpanel" aria-labelledby="heading-{{ $number }}">
 						<div class="panel-body">
@@ -96,24 +139,28 @@
 
 
 											@switch($order->status)
+											@case(0)
+											<span class="label label-danger">Cancel</span>
+
+											@break
+
 											@case(1)
-											<span class="label label-default">Pending</span>
+											<span class="label label-warning">Pending</span>
+
 											@break
 
 											@case(2)
 											<span class="label label-info">Processing</span>
+
 											@break
 
 											@case(3)
-											<span class="label label-warning">Shipped<i class="fa fa-truck"></i> </span>
+											<span class="label label-success">Shipped<i class="fa fa-truck"></i> </span>
+
 											@break
 
 											@case(4)
-											<span class="label label-success"> Delivered <i class="fa fa-check"></i></span>
-											@break
-
-											@case(5)
-											<span class="label label-danger">Fail</span>
+											<span class="label label-default "> Delivered <i class="fa fa-check"></i></span>
 											@break
 
 											@default

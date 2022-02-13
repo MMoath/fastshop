@@ -95,6 +95,7 @@
 
 
                 </ul>
+
             </div>
         </div>
         <!-- /TOP HEADER -->
@@ -105,6 +106,7 @@
             <div class="container">
                 <!-- row -->
                 <div class="row">
+                    @yield('alert')
                     <!-- LOGO -->
                     <div class="col-md-3">
                         <div class="header-logo">
