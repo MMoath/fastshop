@@ -71,6 +71,17 @@ class OrderController extends Controller
        
         
     }
+
+    /**
+     * All This function in down for Statistics coming from the admin home page
+     */
+    public function newOrders(){
+        $orders = Order::where('status',1)->orderby('id', 'desc')->paginate(15);
+        if (!$orders)
+            return abort('404');
+        return view('admin.orders.index', compact('orders'));
+    }
+    
     
 }
 

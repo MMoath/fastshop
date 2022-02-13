@@ -4,16 +4,19 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
     public function __construct(){
         $this->middleware('auth');
+    }
+
+    public function index(){
+        $users = User::paginate(15);
+        return view("admin.users.index", compact('users'));
     }
     
     public function add(){     
@@ -43,11 +46,6 @@ class UserController extends Controller
         ]);
         $alert = alert('success', 'Operation accomplished successfully', 'toast');
         return redirect()->back()->with($alert);
-    }
-
-    public function index(){
-        $users = DB::table('users')->paginate(10);
-        return view("admin.users.index",compact('users'));      
     }
 
     public function show($id){

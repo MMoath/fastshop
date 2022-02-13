@@ -28,7 +28,7 @@
             </div>
             @auth
             <div class="info">
-                <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+                <a href="{{ route('admin.users.show',userId()) }}" class="d-block">{{ Auth::user()->name }}</a>
 
             </div>
             @endauth
@@ -52,7 +52,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('users') }}" class="nav-link">
+                    <a href="{{ route('admin.users') }}" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
                             Users
@@ -84,11 +84,11 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('admin.orders') }}" class="nav-link">
-                     
+
                         <i class=" nav-icon ion ion-bag"></i>
                         <p>
                             Orders
-                      
+
                         </p>
                     </a>
                 </li>

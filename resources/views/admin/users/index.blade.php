@@ -42,6 +42,7 @@
                             </thead>
                             <tbody class="text-center">
                                 @forelse ($users as $user)
+                                @if(userId() != $user->id)
                                 <tr>
                                     <td>{{ $user->id }}</td>
                                     <td>{{ $user->name }}</td>
@@ -56,11 +57,12 @@
                                     </td>
                                     <td class="text-center">
                                         <div class="btn-group btn-group-sm" role="group" aria-label="Basic outlined ">
-                                            <a href="{{ url('admin/users/'.$user->id) }}" title="view" class="btn btn-outline-info"><i class="far fa-folder-open"></i> View</a>
+                                            <a href="{{ route('admin.users.show',$user->id) }}" title="view" class="btn btn-outline-info"><i class="far fa-folder-open"></i> View</a>
                                         </div>
 
                                     </td>
                                 </tr>
+                                @endif
                                 @empty
                                 <tr>
                                     <td colspan="6">No Data</td>

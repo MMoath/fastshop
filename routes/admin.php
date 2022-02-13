@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\SettingController;
@@ -11,36 +12,35 @@ use App\Http\Controllers\Admin\OrderController;
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Admin Routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
 */
 
-Route::get('home',[App\Http\Controllers\HomeController::class, 'adminHome'])->middleware('admin')->name('admin.home');
+
 
 Route::group(["namespace"=>"Admin"],function(){
+
+    Route::get('home', [HomeController::class, 'index'])->name('admin.home');
    
     Route::group(["prefix" => "users"], function () {
+        Route::get('/', [UserController::class, 'index'])->name('admin.users');
+        Route::get('/{id}/show', [UserController::class, 'show'])->name('admin.users.show');
         Route::get('add', [UserController::class, 'add'])->name('add.user');
         Route::post('creat', [UserController::class, 'creat'])->name('creat.user');
         Route::post('delete', [UserController::class, 'delete'])->name('delete.user');
         Route::post('update', [UserController::class, 'update'])->name('update.user');
         Route::post('change-password', [UserController::class, 'changePassword'])->name('change.password');
-        Route::get('/', [UserController::class, 'index'])->name('users');
-        Route::get('/{id}', [UserController::class, 'show']);
+        
     });
     
     Route::group(["prefix" => "settings"], function () {
         Route::get('/', [SettingController::class, 'index'])->name('settings');
         Route::get('categories',[SettingController::class ,'categoryIndex'])->name('Categories');
         Route::post('categories/create', [SettingController::class, 'categoryCreate'])->name('create.categories');
+        Route::post('categories/update', [SettingController::class, 'categoryUpdate'])->name('category.update');
         Route::get('categories/{id}/delete', [SettingController::class, 'categoryDelete']);
         Route::get('categories/{id}/edit', [SettingController::class, 'categoryEdit']);
-        Route::post('categories/update', [SettingController::class, 'categoryUpdate'])->name('category.update');
+      
     });
 
     Route::group(["prefix" => "products"], function () {
@@ -59,6 +59,9 @@ Route::group(["namespace"=>"Admin"],function(){
         Route::get('stutas/{id}/{change}', [OrderController::class, 'changeStutas'])->name('admin.order.stutas');
         Route::get('print/{id}', [OrderController::class, 'print'])->name('admin.order.print');
         Route::get('pdf/{id}', [OrderController::class, 'pdf'])->name('admin.order.pdf');
+
+        // Statistics coming from the admin home page
+        Route::get('new-orders', [OrderController::class, 'newOrders'])->name('admin.new.orders');
 
     });
 
