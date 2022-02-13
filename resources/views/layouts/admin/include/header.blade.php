@@ -61,14 +61,14 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="{{ route('admin.home') }}" class="nav-link">Home</a>
+                    <a title="Home" href="{{ route('admin.home') }}" class="nav-link" data-toggle="tooltip" data-placement="top">Home</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="{{ route('welcome') }}" class="nav-link"> <i class="fas fa-retweet"></i> Front end</a>
+                    <a title="Switch to Front-End" href="{{ route('welcome') }}" class="nav-link" data-toggle="tooltip" data-placement="top"> <i class="fas fa-retweet"></i> Front-End</a>
                 </li>
                 @if (Route::has('login'))
                 @auth
-                <li class="nav-item d-none d-sm-inline-block"><a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+                <li class="nav-item d-none d-sm-inline-block"><a title="Logout" data-toggle="tooltip" data-placement="top"  class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
                         <i class="fas fa-sign-out-alt"></i> {{ __('Logout') }}
                     </a>

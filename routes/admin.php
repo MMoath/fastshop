@@ -56,6 +56,7 @@ Route::group(["namespace"=>"Admin"],function(){
     Route::group(["prefix" => "orders"], function () {
         Route::get('/', [OrderController::class, 'index'])->name('admin.orders');
         Route::get('show/{id}', [OrderController::class, 'show'])->name('admin.order.show');
+        Route::get('stutas/{id}/{change}', [OrderController::class, 'changeStutas'])->name('admin.order.stutas');
         Route::get('print/{id}', [OrderController::class, 'print'])->name('admin.order.print');
         Route::get('pdf/{id}', [OrderController::class, 'pdf'])->name('admin.order.pdf');
 

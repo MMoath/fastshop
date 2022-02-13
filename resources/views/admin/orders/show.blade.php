@@ -11,6 +11,12 @@
 
 <div class="row">
     <div class="col-12">
+        @if($order->status == 4)
+        <div class="callout callout-success">
+            <h5><i class="fas fa-info"></i> Note:</h5>
+            This order has been confirmed receipt by the customer.
+        </div>
+        @endif
         <div class="invoice p-3 mb-3">
             <!-- title row -->
             <div class="row">
@@ -171,13 +177,21 @@
             <!-- this row will not appear when printing -->
             <div class="row no-print">
                 <div class="col-12">
-                    <a href="{{ route('admin.order.print',$order->id) }}" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
-                    <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit
-                        Payment
-                    </button>
-                    <a href="{{ route('admin.order.pdf',$order->id) }}"  type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
+                    <button href="#" type="button" class="btn btn-sm btn-primary" style="margin-right: 5px;" disabled>
                         <i class="fas fa-download"></i> Generate PDF
+                    </button>
+                    <a href="{{ route('admin.order.print',$order->id) }}" rel="noopener" target="_blank" class="btn btn-sm btn-default"><i class="fas fa-print"></i> Print</a>
+                    @if($order->status == 1)
+                    <a title="Change stutas " href="{{ route('admin.order.stutas', ['id' => $order->id, 'change' => '2']) }}" type="button" class="btn btn-sm btn-outline-info float-right"> CHANGE STUTAS | Processing <i class="fas fa-hourglass"></i>
                     </a>
+                    @endif
+                    @if($order->status == 2)
+                    <a title="Change stutas " href="{{ route('admin.order.stutas', ['id' => $order->id, 'change' => '3']) }}" type="button" class="btn btn-sm btn-outline-success float-right"> CHANGE STUTAS | Shipped <i class="fas fa-truck"></i>
+                    </a>
+                    @endif
+
+
+
                 </div>
             </div>
         </div>

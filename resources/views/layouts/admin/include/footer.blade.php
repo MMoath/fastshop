@@ -65,6 +65,10 @@
               $(this).addClass('active')
           })
       })
+
+      $(function() {
+          $('[data-toggle="tooltip"]').tooltip()
+      })
   </script>
   @include('layouts.massage.toastr')
   @include('layouts.massage.sweetalert')

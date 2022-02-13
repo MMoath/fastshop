@@ -54,6 +54,9 @@
                     @auth
                     <li><a><i class="fa fa-user-o"></i></a><span class="total-maney">My Account | </span><a href="{{ route('account') }}" title="My Account"> {{ Auth::user()->name }}</a></li>
                     <li><a title="Order" href="{{ route('order') }}">Your Order ( {{ user()->orders->count() }} ) </a></li>
+                    @if(user()->role ==1)
+                    <li><a title="Switch to Dashboard" href="{{ route('admin.home') }}"> <i class="fa fa-retweet"></i> Dashboard</a></li>
+                    @endif
                     @else
                     <li><a href="#"><i class="fa fa-phone"></i> +967 774 474 100</a></li>
                     <!-- <li><a href="#"><i class="fa fa-envelope-o"></i> mohammed.moath1@gmail.com</a></li>
@@ -105,7 +108,7 @@
                     <!-- LOGO -->
                     <div class="col-md-3">
                         <div class="header-logo">
-                            <a title="Fast Shop" href="{{ url('/') }}" class="logo">
+                            <a title="Fast Shop" href="{{ url('welcome') }}" class="logo">
                                 <img src="{{ URL::asset('imges/logo/images.png')}}" alt="">
                             </a>
                         </div>
@@ -230,7 +233,7 @@
             <div id="responsive-nav">
                 <!-- NAV -->
                 <ul class="main-nav nav navbar-nav">
-                    <li class="{{ $active_nav == '1' ? 'active' : ''}}"><a title="Home" href="{{ url('/') }}">Home</a></li>
+                    <li class="{{ $active_nav == '1' ? 'active' : ''}}"><a title="Home" href="{{ url('welcome') }}">Home</a></li>
                     <li class="{{ $active_nav == '2' ? 'active' : ''}}"><a title="Store" href="{{ url('store') }}">Store</a></li>
                     <!-- <li class="{{ $active_nav == '2' ? 'active' : ''}}"><a title="Discounts" href="#">Discounts</a></li> -->
                     <li class="{{ $active_nav == '3' ? 'active' : ''}}">
