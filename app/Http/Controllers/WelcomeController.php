@@ -102,7 +102,7 @@ class WelcomeController extends Controller
         $active_nav = "";
      
             $products = Product::where('name','like',"%$q%")
-                                ->orWhere('price','like',"%$q%")
+                                ->orWhere('selling_price','like',"%$q%")
                                 ->paginate(100)
                                 ->setPath('');
             $products->appends ( array (

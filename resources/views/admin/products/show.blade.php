@@ -15,7 +15,7 @@
             <div class="col-12 col-sm-6">
                 <h3 class="d-inline-block d-sm-none">{{ $product ->name ? $product ->name : 'NULL'}}</h3>
                 <div class="col-12">
-                    <img src="{{ URL::asset('imges/products/'.$product->img); }}" class="product-image" alt="{{$product ->name}} image">
+                    <img src="{{ URL::asset('imges/products/'.$product->thumbnail); }}" class="product-image" alt="{{$product ->name}} image">
                 </div>
                 <!-- <div class="col-12 product-image-thumbs">
                     <div class="product-image-thumb active"><img src="{{ URL::asset('imges/products/1643975439.png'); }}" alt="Product Image"></div>
@@ -28,7 +28,33 @@
             <div class="col-12 col-sm-6">
                 <h3 class="my-3" style="color:#d71453;"><em>{{ $product ->name ? $product ->name : 'NULL'}}</em></h3>
                 <p><b> ID :</b> {{ $product ->id ? $product ->id : 'NULL'}}</p>
-                <p><b> Price :</b> $ {{ $product->price ? $product->price : 'NULL'}}</p>
+                <p><b> Quantity :</b> {{ $product ->quantity ? $product ->quantity : 'NULL'}}</p>
+                <p><b> Unit Price :</b> ${{ $product ->unit_price ? $product ->unit_price : 'NULL'}}</p>
+                <p><b> Selling Price:</b> ${{ $product ->selling_price ? $product ->selling_price : 'NULL'}}</p>
+                <p><b> Status :</b>
+                    @switch($product->status)
+                    @case(0)
+                    <span class="badge badge-secondary">Stock</span>
+                    @break
+                    @case(1)
+                    <span class="badge badge-success">Displayed</span>
+                    @break
+                    @case(2)
+                    <span class="badge badge-primary">Discounts</span>
+                    @break
+                    @case(3)
+                    <span class="badge badge-warning">Finished</span>
+                    @break
+                    @case(4)
+                    <span class="badge badge-danger">Consists</span>
+                    @break
+                    @case(5)
+                    <span class="badge badge-Light">comment</span>
+                    @break
+                    @default
+                    There is something wrong ...
+                    @endswitch
+                </p>
                 <p><b>Category :</b> {{ isset($product->category->name) !=null ? $product->category->name : 'NULL'}}</p>
                 <p><b>Created by :</b> {{ isset($product ->user->name) != null ? $product ->user->name : 'NULL'}}</p>
                 <p><b>Created at :</b> {{ isset($product->created_at) !=null ? $product->created_at : 'NULL'}}</p>

@@ -47,8 +47,8 @@
 					<tr>
 						<th>{{ $number}}</th>
 						<td><a title="view" href="{{ url('products/'.$pro->product->id.'/view') }}">{{$pro->product->name}} <i class="fa fa-external-link"></i> </a></td>
-						<td>$ {{$pro->product->price}}</td>
-						<td><img src="{{  URL::asset('imges/products/'.$pro->product->img); }}" alt="" style="max-height:10rem;"></td>
+						<td>$ {{$pro->product->selling_price}}</td>
+						<td><img src="{{  URL::asset('imges/products/'.$pro->product->thumbnail); }}" alt="" style="max-height:10rem;"></td>
 						<td>
 							<a title="add to cart" type="button" class="btn btn-default btn-sm primary-btn-remove" href="{{ url('cart/'.$pro->product->id.'/add') }}"> <i class="fa fa-shopping-cart"></i> Add To Cart</a>
 							<a title="remove from wishlist" type="button" class="btn btn-default btn-sm primary-btn-remove" href="{{ route('remove.from.wishlist',$pro->id) }}"> <i class="fa fa-minus-square"></i> Remove Wish</a>

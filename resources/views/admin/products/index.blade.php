@@ -83,6 +83,9 @@ Products | <a title="add products" href="{{ route('add.products') }}" type="butt
                                         @case(4)
                                         <span class="badge badge-danger">Consists</span>
                                         @break
+                                        @case(5)
+                                        <span class="badge badge-Light">comment</span>
+                                        @break
                                         @default
                                         There is something wrong ...
                                         @endswitch

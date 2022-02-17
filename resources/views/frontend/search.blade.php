@@ -37,8 +37,8 @@
 						<tr>
 							<th>{{ $number}}</th>
 							<td><a title="view" href="{{ url('products/'.$pro->id.'/view') }}">{{$pro->name}} <i class="fa fa-external-link"></i> </a></td>
-							<td>$ {{$pro->price}}</td>
-							<td><img src="{{  URL::asset('imges/products/'.$pro->img); }}" alt="" style="max-height:10rem;"></td>
+							<td>$ {{$pro->selling_price}}</td>
+							<td><img src="{{  URL::asset('imges/products/'.$pro->thumbnail); }}" alt="" style="max-height:10rem;"></td>
 							<td>{{$pro->category->name}}</td>
 						</tr>
 						@empty

@@ -23,7 +23,8 @@ function productStatus(){
         '1' => "Displayed", // معرض
         '2'=> "Discounts", // تخفيضات
         '3' => "Finished", // انتهي
-        '4' => "Consists" // تالف
+        '4' => "Consists", // تالف
+        '5'=> "comment", // تعليق
     ];
     return $status_name;
 }
@@ -33,4 +34,12 @@ function thumbnail($path_thumbnail, $folder){
     $thumbnail = time() . '.' . $path_thumbnail->extension();
     $path_thumbnail->move(public_path($folder), $thumbnail);
     return  $thumbnail;
+}
+
+// function of Total Cost
+function totalCost(){
+    $total_sales= Product::select( DB::raw('SUM(quantity * unit_price) as total_sales'))
+     ->get();
+   $total_cost= $total_sales->sum('total_sales');
+    return $total_cost;
 }

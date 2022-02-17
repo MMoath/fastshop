@@ -27,7 +27,7 @@ class CreateProductsTable extends Migration
             $table->bigInteger('selling_price')->require();
 
             $table->text('notes')->nullable();
-            $table->enum('status', ['0','1', '2', '3', '4'])->require()->default("0");
+            $table->enum('status', ['0','1', '2', '3', '4','5'])->require()->default("0");
             // $table->tinyInteger('status')
             /*
             *  Explanation of product statuses

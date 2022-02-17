@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ProductRequest;
 use Illuminate\Http\Request;
 use App\Models\Admin\Product;
+use App\Models\Frontend\Wishlist;
+use App\Models\Frontend\Order_Detail;
+use App\Models\Frontend\Cart;
+use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
 {
@@ -62,17 +66,35 @@ class ProductController extends Controller
             return view('admin.products.show', compact('product'));
         }    
     }//end function show 
+
     public function delete($id){
+
         $product = Product::find($id);
+        $cart = Cart::where('product_id',$id)->count();
+        $order_details = Order_Detail::where('product_id', $id)->count();
+        $wishlist = Wishlist::where('product_id', $id)->count();
+
         if ($product == null) {
             return redirect()->route('products');
-        } else {
-             $product ->delete();
+        } 
+        elseif($cart != 0 || $order_details != 0 || $wishlist !=0) {
+            $alert = alert('error', 'The product cannot be deleted because it has links', 'sweet');
+            return redirect()->route('products')->with($alert);    
+        }
+        else{
+
+            $thumbnail_path = public_path().'\imges\products'.'/'.$product->thumbnail; // name of image
+
+            File::delete($thumbnail_path); // delete yhumbnail from Storage
+
+            $product->delete();
+
             $alert = alert('success', 'Product deleted successfully', 'toast');
             return redirect()->route('products')->with($alert);
-           
         }
-    }
+        return redirect()->route('products'); 
+    }//end function delete
+
     public function edit($id){
         $product = Product::find($id);
         if ($product == null) {
@@ -80,37 +102,45 @@ class ProductController extends Controller
         } else {
             return view('admin.products.edit', compact('product'));
         }
-    }
+    }//end function edit 
+
     public function update(Request $request){
-        if($request->img == null){
+        if($request->thumbnail == null){
             $pro = Product::where('id', $request->id)->first();
-            $images = $pro['img'];
+            $thumbnail = $pro['thumbnail'];
         }else{
             $this->validate($request, [
-                'img' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg'],
+                'thumbnail' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg'],
             ]);
-            $path_img = $request->img;
-            $images = image($path_img);
+
+            // save thumbnail product at functions thumbnail
+            $thumbnail = thumbnail($request->thumbnail, 'imges\products');
         }
+        
         $this->validate($request, [
             'name' => ['required', 'string', 'max:190', 'min:5'],
-            'price' => ['required', 'numeric', 'digits_between:1,10'],
             'description' => ['nullable', 'string', 'max:190', 'min:5'],
+            'categories_id' => ['required', 'min:1'],
+            'quantity' => ['required', 'numeric', 'digits_between:1,19'],
+            'unit_price' => ['required', 'numeric', 'digits_between:1,19'],
+            'selling_price' => ['required', 'numeric', 'digits_between:1,19'],
             'notes' => ['nullable', 'string', 'max:190', 'min:5'],
-            'categories_id' => ['required'],
+            'status' => ['required', 'numeric', 'digits_between:1,4'],  
         ]);
 
-        Product::where('id',$request->id)->update([
-            'name' => $request['name'],
-            'price' => $request['price'],
+        Product::where('id',$request->id)->update(['name' => $request['name'],
             'description' => $request['description'],
-            'img' =>   $images,
-            'notes' => $request['notes'],
+            'thumbnail' => $thumbnail,
             'categories_id' => $request['categories_id'],
+            'quantity' => $request['quantity'],
+            'unit_price' => $request['unit_price'],
+            'selling_price' => $request['selling_price'],
+            'notes' => $request['notes'],
+            'status' => $request['status'],
         ]);
         $alert = alert('success', 'Product updated successfully', 'toast');
         return redirect("admin/products/{$request->id}/edit")->with($alert);
-    }
+    }//end function update
 
     public function search(Request $request){
         $q = $request->search;
@@ -127,6 +157,5 @@ class ProductController extends Controller
         ));
         return view('admin.products.index', compact('products'));
     }//end function search
-    
-    
+   
 }

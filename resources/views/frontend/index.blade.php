@@ -1,10 +1,10 @@
 @extends('layouts.frontend.master')
 @section('alert')
-    @auth
-        @if(checkShipped() == 'yes')
-            @include('layouts.massage.shipped_order')
-        @endif
-    @endauth
+@auth
+@if(checkShipped() == 'yes')
+@include('layouts.massage.shipped_order')
+@endif
+@endauth
 @stop
 @section('content')
 
@@ -79,7 +79,7 @@
                                 <div class="product">
                                     <a href="{{ url('products/'.$pro->id.'/view') }}">
                                         <div class="product-img">
-                                            <img src="{{ URL::asset('imges/products/'.$pro->img); }}" alt="{{$pro->name}} photo">
+                                            <img src="{{ URL::asset('imges/products/'.$pro->thumbnail); }}" alt="{{$pro->name}} photo">
                                             <div class="product-label">
                                                 <!-- <span class="sale">-30%</span> -->
                                                 <span class="new">NEW</span>
@@ -89,7 +89,7 @@
                                             <p class="product-category">{{ isset($pro->category->name) != null ? $pro->category->name : ''}}</p>
                                             <h3 class="product-name"><a title="View" href="{{ url('products/'.$pro->id.'/view') }}">{{ $pro->name ? $pro->name : ''}}</a></h3>
                                             <!-- <del class="product-old-price">$990.00</del> -->
-                                            <h4 class="product-price">$ {{ $pro->price ? $pro->price : ''}} </h4>
+                                            <h4 class="product-price">$ {{ $pro->selling_price ? $pro->selling_price : ''}} </h4>
                                             <div class="product-rating">
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>

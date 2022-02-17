@@ -22,7 +22,7 @@ class HomeController extends Controller
      * Show the admin dashboard.
      */
     public function index(){
-    
+   
         $canceled_orders = Order::where('status',0)->count();
         $new_orders = Order::where('status', 1)->count();
         $processing_orders = Order::where('status', 2)->count();

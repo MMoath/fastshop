@@ -31,7 +31,7 @@
 			<div class="col-md-5 col-md-push-2">
 				<div id="product-main-img">
 					<div class="product-preview">
-						<img src="{{  URL::asset('imges/products/'.$product->img); }}" alt="">
+						<img src="{{  URL::asset('imges/products/'.$product->thumbnail); }}" alt="">
 					</div>
 
 					<!-- <div class="product-preview">
@@ -53,7 +53,7 @@
 			<div class="col-md-2  col-md-pull-5">
 				<div id="product-imgs">
 					<div class="product-preview">
-						<img src="{{  URL::asset('imges/products/'.$product->img); }}" alt="">
+						<img src="{{  URL::asset('imges/products/'.$product->thumbnail); }}" alt="">
 					</div>
 
 					<!-- <div class="product-preview">
@@ -87,7 +87,7 @@
 					</div> -->
 					<div>
 						<!-- <del class="product-old-price">$990.00</del> -->
-						<h3 class="product-price">$ {{ isset($product->price) !=null ? $product->price : 'NULL'}}</h3>
+						<h3 class="product-price">$ {{ isset($product->selling_price) !=null ? $product->selling_price : 'NULL'}}</h3>
 						<!-- <span class="product-available">In Stock</span> -->
 					</div>
 					<p> {{ isset($product->notes) !=null ? $product->notes : 'NULL'}}</p>
@@ -397,7 +397,7 @@
 									<a href="{{ url('products/'.$pro->id.'/view') }}">
 										<div class="product">
 											<div class="product-img">
-												<img src="{{ URL::asset('imges/products/'.$pro->img); }}" alt="{{$pro->name}} photo">
+												<img src="{{ URL::asset('imges/products/'.$pro->thumbnail); }}" alt="{{$pro->name}} photo">
 												<div class="product-label">
 													<!-- <span class="sale">-30%</span> -->
 												</div>
@@ -406,7 +406,7 @@
 												<p class="product-category">{{ isset($pro->category->name) != null ? $pro->category->name : ''}}</p>
 												<h3 class="product-name"><a title="View" href="{{ url('products/'.$pro->id.'/view') }}">{{ $pro->name ? $pro->name : ''}}</a></h3>
 												<!-- <del class="product-old-price">$990.00</del> -->
-												<h4 class="product-price">$ {{ $pro->price ? $pro->price : ''}}</h4>
+												<h4 class="product-price">$ {{ $pro->selling_price ? $pro->selling_price : ''}}</h4>
 												<div class="product-rating">
 												</div>
 												@php $id="$pro->id"; @endphp

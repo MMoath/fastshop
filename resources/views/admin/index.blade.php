@@ -137,7 +137,7 @@
                     <div class="col-sm-4 col-6">
                         <div class="description-block border-right">
                             <br>
-                            <h5 class="description-header">$10,390.90</h5>
+                            <h5 class="description-header">$ {{ totalCost() }}</h5>
                             <span class="description-text">TOTAL COST</span>
                         </div>
                         <!-- /.description-block -->
@@ -145,8 +145,13 @@
                     <!-- /.col -->
                     <div class="col-sm-4 col-6">
                         <div class="description-block">
-                            <span class="description-percentage text-success"> 20%</span>
-                            <h5 class="description-header">$24,813.53</h5>
+                            <br>
+                            <!-- <span class="description-percentage text-success"> 20%</span> -->
+                            <h5 class="description-header">
+                                @if($sold_todye > totalCost() )
+                                $ {{ $sold_todye - totalCost()}} +
+                                @endif
+                                @if(totalCost() > $sold_todye) $ {{totalCost() - $sold_todye  }} - @endif </h5>
                             <span class="description-text">TOTAL PROFIT</span>
                         </div>
                         <!-- /.description-block -->
