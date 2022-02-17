@@ -5,17 +5,21 @@ namespace App\Models\Admin;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Product extends Model
 {
     use HasFactory;
     protected $table = "products";
     protected $fillable = [
         'name',
-        'price',
         'description',
-        'img',
-        'notes',
+        'thumbnail',
         'categories_id',
+        'quantity',
+        'unit_price',
+        'selling_price',
+        'notes',
+        'status',
         'created_by',
         'created_at',
         'updated_at',
@@ -33,5 +37,10 @@ class Product extends Model
     public function users()
     {
         return $this->belongsToMany('App\Models\Admin\User','carts', 'product_id', 'user_id');
+    }
+
+    public function orders()
+    {
+        return $this->belongsToMany('App\Models\Frontend\Order', 'order_details','product_id', 'order_id');
     }
 }

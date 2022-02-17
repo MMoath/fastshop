@@ -3,9 +3,11 @@
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Admin\Category;
+use App\Models\Admin\Product;
 use App\Models\Frontend\Cart;
 use App\Models\Frontend\Wishlist;
 use App\Models\Frontend\Order;
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -123,6 +125,26 @@ function checkShipped(){
     }else{
         return 'no';
     }                    
+}
+
+function conutOrder(){
+    $order = Order::where('user_id', userId())
+        ->where('status', 3)
+        ->count();
+    return $order;
+}
+
+// function of Top selling products
+function topSellingProducts()
+{
+    $product_sold = Product::select('products.id', 'products.name', 'products.selling_price', 'products.thumbnail', DB::raw('count(*) as total'))
+                        ->join('order_details', 'products.id', '=', 'order_details.product_id')
+                        ->join('orders', 'order_details.order_id', '=', 'orders.id')
+                        ->where('orders.status', 4)
+                        ->groupBy('order_details.product_id')
+                        ->orderBy('total', 'desc')
+                        ->get();
+    return $product_sold;
 }
 
 

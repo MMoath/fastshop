@@ -32,11 +32,12 @@ use App\Http\Controllers\Frontend\WishlistController;
 
 // Route::get('/',[App\Http\Controllers\WelcomeController::class, 'index'])->name('index')->middleware("admin.redirect");
 
-
+Route::get('/', [IndexController::class, 'index'])
+->name('index')
+    ->middleware("admin.redirect", "check.account.status");
+    
 Route::group(["namespace" => "Frontend"], function () {   
-    Route::get('/', [IndexController::class, 'index'])
-            ->name('index')
-            ->middleware("admin.redirect", "check.account.status");
+    
 
     Route::group(["prefix" => "cart"], function () {
         Route::get('/', [CartController::class, 'index'])->name('cart');

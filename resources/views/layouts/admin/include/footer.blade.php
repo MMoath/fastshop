@@ -69,9 +69,16 @@
       $(function() {
           $('[data-toggle="tooltip"]').tooltip()
       })
+
+      function buttonReset() {
+          document.getElementById('resetForm').reset();
+          document.getElementById('from').text = null;
+          return false;
+      }
   </script>
   @include('layouts.massage.toastr')
   @include('layouts.massage.sweetalert')
+  @yield('script')
   </body>
 
   </html>

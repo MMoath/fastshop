@@ -3,11 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Frontend\Order;
-use App\Models\Frontend\Cart;
-use App\Models\Admin\Product;
 use App\Models\User;
+use App\Models\Admin\Category;
+use App\Models\Admin\Product;
+use App\Models\Frontend\Cart;
+use App\Models\Frontend\Order;
+use App\Models\Frontend\Wishlist;
 use Illuminate\Http\Request;
+
+
 
 class HomeController extends Controller
 {
@@ -18,7 +22,7 @@ class HomeController extends Controller
      * Show the admin dashboard.
      */
     public function index(){
-
+    
         $canceled_orders = Order::where('status',0)->count();
         $new_orders = Order::where('status', 1)->count();
         $processing_orders = Order::where('status', 2)->count();
@@ -26,7 +30,11 @@ class HomeController extends Controller
         $delivered_orders = Order::where('status', 4)->count();
         $all_product = Product::all()->count();
         $users = User::all()->except(userId())->count();
-        $carts = Cart::all()->count();
+        $Categories = Category::all()->count();
+        $sold_todye = Order::where('status', 4)->whereDate('created_at', '=', date('Y-m-d'))->sum('price');
+        $cart = Cart::all()->count();
+        $wishlist = Wishlist::all()->count();
+        
         return view('admin.index',compact(
             'canceled_orders',
             'new_orders',
@@ -35,7 +43,10 @@ class HomeController extends Controller
             'delivered_orders',
             'all_product',
             'users',
-            'carts',
+            'Categories',
+            'sold_todye',
+            'cart',
+            'wishlist',
         ));
     }
 }

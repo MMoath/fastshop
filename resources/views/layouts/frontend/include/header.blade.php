@@ -53,7 +53,11 @@
                 <ul class="header-links pull-left">
                     @auth
                     <li><a><i class="fa fa-user-o"></i></a><span class="total-maney">My Account | </span><a href="{{ route('account') }}" title="My Account"> {{ Auth::user()->name }}</a></li>
-                    <li><a title="Order" href="{{ route('order') }}">Your Order ( {{ user()->orders->count() }} ) </a></li>
+                    <li><a title="Order" href="{{ route('order') }}">Your Order
+                            @if(checkShipped() == 'yes')
+                            ( {{ conutOrder() }} )
+                            @endif
+                        </a></li>
                     @if(user()->role ==1)
                     <li><a title="Switch to Dashboard" href="{{ route('admin.home') }}"> <i class="fa fa-retweet"></i> Dashboard</a></li>
                     @endif

@@ -48,9 +48,11 @@ Route::group(["namespace"=>"Admin"],function(){
         Route::get('add', [ProductController::class, 'add'])->name('add.products');
         Route::POST('create', [ProductController::class, 'create'])->name('create.product');
         Route::POST('update', [ProductController::class, 'update'])->name('update.product');
-        Route::get('{id}/view', [ProductController::class, 'view']);
+        Route::get('{id}/view', [ProductController::class, 'show']);
         Route::get('{id}/delete', [ProductController::class, 'delete']);
         Route::get('{id}/edit', [ProductController::class, 'edit']);
+        Route::any('search',[ProductController::class, 'search'])->name('admin.product.search');
+        
     });
 
     Route::group(["prefix" => "orders"], function () {
@@ -61,7 +63,8 @@ Route::group(["namespace"=>"Admin"],function(){
         Route::get('pdf/{id}', [OrderController::class, 'pdf'])->name('admin.order.pdf');
 
         // Statistics coming from the admin home page
-        Route::get('new-orders', [OrderController::class, 'newOrders'])->name('admin.new.orders');
+        Route::get('type/{id}', [OrderController::class, 'newOrders'])->name('admin.type.orders');
+        
 
     });
 

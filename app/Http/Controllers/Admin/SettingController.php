@@ -63,14 +63,16 @@ class SettingController extends Controller
     }
     public function categoryEdit($id)
     {
-        $product = Product::where('categories_id', $id)->count();
-        if ($product > 0) {
-            $alert = alert('error', 'The item has links, you cant edit','sweet');
-            return redirect()->route('Categories')->with($alert);
-        } else {
-            $category=  Category::find($id);
-            return view('admin.settings.categories.edit',compact('category'));
-        }
+        $category =  Category::find($id);
+        return view('admin.settings.categories.edit', compact('category'));
+        // $product = Product::where('categories_id', $id)->count();
+        // if ($product > 0) {
+        //     $alert = alert('error', 'The item has links, you cant edit','sweet');
+        //     return redirect()->route('Categories')->with($alert);
+        // } else {
+        //     $category=  Category::find($id);
+        //     return view('admin.settings.categories.edit',compact('category'));
+        // }
     }
     public function categoryUpdate(Request $request){
         $old_name = Category::where('id', $request->id)->first();

@@ -24,7 +24,12 @@
                 @endif
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Categories Table</h3>
+
+                        <h3 class="card-title">Categories Table
+
+
+                        </h3>
+
                         <div class="card-tools">
                             <div class="input-group input-group-sm" style="width: 15rem;">
                                 <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
@@ -37,13 +42,14 @@
                         </div>
                     </div>
                     <!-- /.card-header -->
-                    <div class="card-body table-responsive p-0 ">
-                        <table class="table table-hover text-nowrap  table-bordered ">
+                    <div class="card-body table-responsive-sm p-0 ">
+                        <table class="table table-hover text-nowrap  table-bordered table-sm">
                             <thead>
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
                                     <th>Description</th>
+                                    <th>Related Products</th>
                                     <th>Notes</th>
                                     <th>Created by</th>
                                     <td class="text-center">
@@ -53,12 +59,13 @@
                                     </td>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="text-center">
                                 @forelse ($Category as $cat)
-                                <tr>
+                                <tr class="table_over">
                                     <td>{{ $cat->id ? $cat->id : 'No data' }}</td>
                                     <td>{{ $cat->name ? $cat->name : 'No data' }}</td>
                                     <td>{{ $cat->description ? $cat->description : 'No data' }}</td>
+                                    <td>{{ $cat->product ? 'Products ( ' . $cat->product->count() . ')' : 'No data' }}</td>
                                     <td>{{ $cat->notes ? $cat->notes : 'No data'}}</td>
                                     <td>{{ $cat->user->name ? $cat->user->name : 'No data' }}</td>
                                     <td class="text-center">

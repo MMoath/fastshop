@@ -33,21 +33,14 @@
     <link rel="stylesheet" href="{{ URL::asset('admin/plugins/toastr/toastr.min.css'); }}">
     <!-- Sweetalert -->
     <link type="text/css" rel="stylesheet" href="{{ URL::asset('frontend/css/sweetalert.css')}}" />
-    <!-- <style>
-        .bc::before {
-            content: "";
-            background: url('../imges/logo/images3.png');
-            opacity: 0.5;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            position: absolute;
-            z-index: -1;
-
-            /* style="background-image:url();background-position: 50% 50%;" */
+    <style>
+        .table_over>td {
+            max-width: 15rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
-    </style> -->
+    </style>
 
 </head>
 
@@ -68,7 +61,7 @@
                 </li>
                 @if (Route::has('login'))
                 @auth
-                <li class="nav-item d-none d-sm-inline-block"><a title="Logout" data-toggle="tooltip" data-placement="top"  class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+                <li class="nav-item d-none d-sm-inline-block"><a title="Logout" data-toggle="tooltip" data-placement="top" class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
                         <i class="fas fa-sign-out-alt"></i> {{ __('Logout') }}
                     </a>

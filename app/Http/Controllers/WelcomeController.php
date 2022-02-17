@@ -12,9 +12,7 @@ class WelcomeController extends Controller
     public function index(){
         
        
-        $products = Product::orderBy('id', 'desc')->paginate(6);
-        if (!$products)
-            return abort('404');   
+        $products = Product::orderBy('id', 'desc')->paginate(6);  
         $active_nav ="1";
         return view('frontend.index',compact('products', 'active_nav'));
     }
@@ -105,7 +103,7 @@ class WelcomeController extends Controller
      
             $products = Product::where('name','like',"%$q%")
                                 ->orWhere('price','like',"%$q%")
-                                ->paginate(1)
+                                ->paginate(100)
                                 ->setPath('');
             $products->appends ( array (
                 'search' => $q ));

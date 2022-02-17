@@ -50,10 +50,11 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'name' => ['required', 'string', 'max:190', 'min:10'],
+            'email' => ['required', 'string', 'max:190', 'email', 'min:10', 'unique:users,email'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'mobile' => ['required', 'numeric', 'min:8', 'unique:users'],
+            'mobile' => ['required', 'digits_between:7,11', 'unique:users,mobile'],
+            'gender' => ['required'],
         ]);
     }
 
@@ -71,7 +72,8 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'mobile' => $data['mobile'],
             'picture' => 'user.png',
-            'gender' => 'Null',
+            'gender' => $data['gender'],
+            'created_by'=>"0", // 0 = register in veiw register as new mamber
         ]);
     }
 }

@@ -1,5 +1,8 @@
 @extends('layouts.admin.master')
-@section('conternt_title','Products')
+@section('conternt_title')
+Products | <a title="add products" href="{{ route('add.products') }}" type="button" class="btn btn-outline-secondary btn-sm"><i class="far fa-plus-square"></i> Add Products </a>
+
+@stop
 @section('breadcrumb')
 <ol class="breadcrumb float-sm-right">
     <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
@@ -15,41 +18,77 @@
                     <div class="card-header">
                         <h3 class="card-title">Products Table</h3>
                         <div class="card-tools">
-                            <div class="input-group input-group-sm" style="width: 15rem;">
-                                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-                                <div class="input-group-append">
-                                    <button type="submit" class="btn btn-default">
-                                        <i class="fas fa-search"></i>
-                                    </button>
+                            <form method="GET" action="{{ route('admin.product.search') }}">
+                                @csrf
+                                <div class="input-group input-group-sm" style="width: 15rem;">
+                                    <input type="text" name="search" class="form-control float-right" placeholder="Search" required value="{{ old('search') }}">
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-default">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                     <!-- /.card-header -->
-                    <div class="card-body table-responsive p-0">
-                        <table class="table table-hover text-nowrap table-bordered table-sm">
+                    <div class="card-body table-responsive-sm p-0">
+                        <table class="table table-hover  table-bordered table-sm text-center">
                             <thead>
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
-                                    <th>Price</th>
-                                    <th>Image</th>
+                                    <th>Thumbnail</th>
+                                    <th>Qty</th>
+                                    <th>Unit <small>Price</small></th>
+                                    <th>Selling <small>Price</small></th>
+                                    <th>Profit</th>
+                                    <th>Status</th>
                                     <th>Created at</th>
-                                    <th class="text-center">
-                                        <a title=" add products" href="{{ route('add.products') }}" type="button" class="btn btn-outline-secondary btn-sm"><i class="far fa-plus-square"></i> Add Products </a>
+                                    <th>
+                                        Options
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody class="text-center">
+                            <tbody class="table_over">
                                 @forelse ($products as $pro)
                                 <tr>
-                                    <td>{{ $pro->id }}</td>
-                                    <td>{{ $pro->name }}</td>
-                                    <td>$<b>{{ $pro->price }}</b> USD</td>
-                                    <td class="text-center">
-                                        <img style="max-height:3rem; width:4rem;  " alt="{{$pro->name}}" src="{{ URL::asset('imges/products/'.$pro->img); }}">
+                                    <td>{{ isset($pro->id) ? $pro->id : '' }}</td>
+                                    <td>{{ isset($pro->name) ? $pro->name  : '' }}</td>
+                                    <td>
+                                        <img style="max-height:3rem; width:4rem;" class=" img-circle" alt="{{$pro->thumbnail}}" src="{{ URL::asset('imges/products/'.$pro->thumbnail); }}">
                                     </td>
-                                    <td>{{ $pro->created_at}}</td>
+                                    <td>{{ isset($pro->quantity) ? $pro->quantity : ''}}</td>
+                                    <td>$ {{ isset($pro->unit_price) ? $pro->unit_price : '' }}</td>
+                                    <td>$<b>{{ isset($pro->selling_price) ? $pro->selling_price : '' }}</b></td>
+                                    <td>
+                                        @if($pro->unit_price != null || $pro->selling_price != null )
+                                        ${{ $pro->selling_price - $pro->unit_price}} | <span class="description-percentage text-success"> {{ ( $pro->selling_price - $pro->unit_price ) / $pro->unit_price * 100 }}%</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @switch($pro->status)
+                                        @case(0)
+                                        <span class="badge badge-secondary">Stock</span>
+                                        @break
+                                        @case(1)
+                                        <span class="badge badge-success">Displayed</span>
+                                        @break
+                                        @case(2)
+                                        <span class="badge badge-primary">Discounts</span>
+                                        @break
+                                        @case(3)
+                                        <span class="badge badge-warning">Finished</span>
+                                        @break
+                                        @case(4)
+                                        <span class="badge badge-danger">Consists</span>
+                                        @break
+                                        @default
+                                        There is something wrong ...
+                                        @endswitch
+                                    </td>
+                                    <!-- ->format('d-M-Y , h:i a') -->
+                                    <td>{{ isset($pro->created_at) ?  $pro->created_at->format('d-M-Y') : ''}}</td>
                                     <td class="text-center">
                                         <div class="btn-group btn-group-sm" role="group" aria-label="Basic outlined ">
                                             <a href="{{ url('admin/products/'.$pro->id.'/view') }}" title="more..." class="btn btn-outline-info"><i class="far fa-folder-open"></i> View</a>
@@ -61,7 +100,7 @@
                                 </tr>
                                 @empty
                                 <tr>
-                                    <td colspan="6">No Data</td>
+                                    <td class="table-danger" colspan="10">No Data</td>
 
                                 </tr>
                                 @endforelse
