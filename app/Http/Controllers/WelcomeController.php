@@ -29,6 +29,7 @@ class WelcomeController extends Controller
     }
 
     public function store(Request $request){
+
         
 
         $active_nav = "2";
@@ -61,6 +62,10 @@ class WelcomeController extends Controller
         if($request->input('category') ==null || $request->category == 'all'){
             $ck='all';
             $products = Product::orderBy('id', 'desc')->paginate($pag);
+            $products->appends(array(
+                'filter_show' => $request->filter_show,
+                'category'=> $request->input('category')
+            ));
             return view('frontend.store', compact('products', 'active_nav','filter', 'ck'));
             if (!$products)
             return abort('404');
@@ -68,6 +73,10 @@ class WelcomeController extends Controller
         }else{
               $ck = $request->category;
             $products = Product::where('categories_id', $request->input('category'))->orderBy('id', 'desc')->paginate($pag);
+            $products->appends(array(
+                 'filter_show' => $request->filter_show,
+                'category'=> $request->input('category')
+            ));
             if (!$products)
                 return abort('404');
 

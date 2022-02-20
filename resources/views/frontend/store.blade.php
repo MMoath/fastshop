@@ -173,7 +173,7 @@
 					<nav aria-label="Page navigation">
 						<ul class="pagination">
 							<li class="pager">
-								{{ $products->links() }}
+								{{ $products->appends(request()->category)->links() }}
 							</li>
 						</ul>
 					</nav>

@@ -72,6 +72,16 @@
 </div>
 <!-- /.row -->
 
+<div class="row chart">
+    <div class="col-md-12">
+        <div>
+            <canvas id="myChart" style="height:45vh; width:80vw;margin-bottom: 3rem;"></canvas>
+        </div>
+
+    </div>
+</div>
+
+
 <div class="row">
     <div class="col-md-3">
         <!-- Info Boxes Style 2 -->
@@ -149,9 +159,14 @@
                             <!-- <span class="description-percentage text-success"> 20%</span> -->
                             <h5 class="description-header">
                                 @if($sold_todye > totalCost() )
-                                $ {{ $sold_todye - totalCost()}} +
+                                ${{ $sold_todye - totalCost()}} +
+
+                                @elseif(totalCost() > $sold_todye)
+                                ${{ totalCost() - $sold_todye  }} -
+                                @else
+                                $0
                                 @endif
-                                @if(totalCost() > $sold_todye) $ {{totalCost() - $sold_todye  }} - @endif </h5>
+                            </h5>
                             <span class="description-text">TOTAL PROFIT</span>
                         </div>
                         <!-- /.description-block -->
@@ -186,7 +201,7 @@
                         @foreach(topSellingProducts() as $pro)
                         @if(++$i <= 3) <tr>
                             <td>
-                                <img src="{{ URL::asset('imges/products/'.$pro->img); }}" alt="Product" class="img-circle img-size-32 mr-2">
+                                <img src="{{ URL::asset('imges/products/'.$pro->thumbnail); }}" alt="Product" class="img-thumbnail img-size-32 mr-2">
                             </td>
                             <td>
                                 {{ isset($pro->name) ? $pro->name : '' }}
@@ -200,7 +215,7 @@
                             <td>
                                 $
 
-                                {{ isset($pro->price) ? $pro->price * $pro->total : ''}}
+                                {{ isset($pro->selling_price) ? $pro->selling_price * $pro->total : ''}}
                             </td>
                             </tr>
                             @endif
@@ -244,7 +259,7 @@
 
         <!-- fix for small devices only -->
         <div class="clearfix hidden-md-up"></div>
-
+        <!-- 
         <div class="col-12 col-sm-6 col-md-12">
             <div class="info-box mb-3">
                 <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users"></i></span>
@@ -252,14 +267,79 @@
                 <div class="info-box-content">
                     <span class="info-box-text">Users Active</span>
                     <span class="info-box-number">2,000</span>
-                </div>
-                <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-        </div>
+                </div> -->
+        <!-- /.info-box-content -->
+        <!-- </div> -->
+        <!-- /.info-box -->
+        <!-- </div> -->
         <!-- /.col -->
     </div>
-
 </div>
+
+
+@stop
+
+@section('script')
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const labels = [
+        @foreach($sales as $sal)
+        @switch($sal->month)
+        @case(1)
+        "January ", @break
+        @case(2)
+        "February ", @break
+        @case(3)
+        "March", @break
+        @case(4)
+        "April", @break
+        @case(5)
+        "May", @break
+        @case(6)
+        "June", @break
+        @case(7)
+        "July", @break
+        @case(7)
+        "August ", @break
+        @case(7)
+        "September", @break
+        @case(7)
+        "October", @break
+        @case(7)
+        "November", @break
+        @case(7)
+        "December", @break
+        @default "No data"
+        @break
+        @endswitch
+        @endforeach
+    ];
+
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: 'Sales',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [
+                @foreach($sales as $sal)
+                "{{$sal->sum}}",
+                @endforeach
+            ],
+        }]
+    };
+
+    const config = {
+        type: 'line',
+        data: data,
+        options: {}
+    };
+</script>
+<script>
+    const myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+    );
+</script>
 
 @stop

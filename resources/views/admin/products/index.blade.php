@@ -56,14 +56,14 @@ Products | <a title="add products" href="{{ route('add.products') }}" type="butt
                                     <td>{{ isset($pro->id) ? $pro->id : '' }}</td>
                                     <td>{{ isset($pro->name) ? $pro->name  : '' }}</td>
                                     <td>
-                                        <img style="max-height:3rem; width:4rem;" class=" img-circle" alt="{{$pro->thumbnail}}" src="{{ URL::asset('imges/products/'.$pro->thumbnail); }}">
+                                        <img style="max-height:3rem; width:4rem;" class=" img-thumbnail" alt="{{$pro->thumbnail}}" src="{{ URL::asset('imges/products/'.$pro->thumbnail); }}">
                                     </td>
                                     <td>{{ isset($pro->quantity) ? $pro->quantity : ''}}</td>
                                     <td>$ {{ isset($pro->unit_price) ? $pro->unit_price : '' }}</td>
                                     <td>$<b>{{ isset($pro->selling_price) ? $pro->selling_price : '' }}</b></td>
                                     <td>
                                         @if($pro->unit_price != null || $pro->selling_price != null )
-                                        ${{ $pro->selling_price - $pro->unit_price}} | <span class="description-percentage text-success"> {{ ( $pro->selling_price - $pro->unit_price ) / $pro->unit_price * 100 }}%</span>
+                                        ${{ $pro->selling_price - $pro->unit_price}} | <span class="description-percentage text-success"> {{round(( $pro->selling_price - $pro->unit_price ) / $pro->unit_price * 100 ) }}%</span>
                                         @endif
                                     </td>
                                     <td>

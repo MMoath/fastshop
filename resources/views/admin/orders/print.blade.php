@@ -100,7 +100,7 @@
                                 <td>{{ isset($pro->name) ? $pro->name : 'NULL'}}</td>
                                 <td>{{ isset($pro->id) ? $pro->id : 'NULL'}}</td>
                                 <td>{{ isset($pro->category->name) ? $pro->category->name : 'NULL'}}</td>
-                                <td>$ {{ isset($pro->price) ? $pro->price : 'NULL'}}</td>
+                                <td>$ {{ isset($pro->selling_price) ? $pro->selling_price : 'NULL'}}</td>
                             </tr>
                             @empty
                             <tr class="table-danger text-center">

@@ -80,7 +80,7 @@ function yourCart(){
 */
 function sumPrice(){
     $user = User::find(userId());
-    $cart_item = $user->products->sum('price');
+    $cart_item = $user->products->sum('selling_price');
     return  $cart_item;
 }
 
@@ -140,7 +140,8 @@ function topSellingProducts()
     $product_sold = Product::select('products.id', 'products.name', 'products.selling_price', 'products.thumbnail', DB::raw('count(*) as total'))
                         ->join('order_details', 'products.id', '=', 'order_details.product_id')
                         ->join('orders', 'order_details.order_id', '=', 'orders.id')
-                        ->where('orders.status', 4)
+                        ->where('orders.status', 3)
+                        ->orwhere('orders.status', 4)
                         ->groupBy('order_details.product_id')
                         ->orderBy('total', 'desc')
                         ->get();

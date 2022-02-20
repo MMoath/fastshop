@@ -15,14 +15,14 @@
                         <ul class="list-group">
                             <li class="list-group-item"><b>Product ID :</b> {{ $pro->id }}</li>
                             <li class="list-group-item"><b>Product NAME :</b> {{ $pro->name }}</li>
-                            <li class="list-group-item"><b>Product PRICE :</b> $ {{ $pro->price }}</li>
+                            <li class="list-group-item"><b>Product PRICE :</b> $ {{ $pro->selling_price }}</li>
                             <li class="list-group-item"><b>Quantity :</b> not specified</li>
-                         
+
 
                         </ul>
                     </div>
                     <div class="col-md-4">
-                        <img src="{{ URL::asset('imges/products/'.$pro->img); }}" alt="{{$pro->name}} thumbnail" class="img-thumbnail">
+                        <img src="{{ URL::asset('imges/products/'.$pro->thumbnail); }}" alt="{{$pro->name}} thumbnail" class="img-thumbnail">
                     </div>
                 </div>
             </div>

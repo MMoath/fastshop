@@ -64,7 +64,7 @@
 						<th>{{ $number}}</th>
 						<td><a title="view" href="{{ url('products/'.$pro->product->id.'/view') }}">{{$pro->product->name}} <i class="fa fa-external-link"></i> </a></td>
 						<td>$ {{$pro->product->selling_price}}</td>
-						<td><img src="{{  URL::asset('imges/products/'.$pro->product->thumbnail); }}" alt="" style="max-height:10rem;"></td>
+						<td><img style="max-height:8rem; width:10rem;" class=" img-thumbnail"  src="{{  URL::asset('imges/products/'.$pro->product->thumbnail); }}" alt=""></td>
 						<td><a title="remove from cart" type="button" class="btn btn-default btn-sm primary-btn-remove" href="{{ route('remove-to-cart',$pro->id) }}"> <i class="fa fa-minus-square"></i> Remove From Cart</a></td>
 					</tr>
 					@empty

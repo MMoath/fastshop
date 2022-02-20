@@ -102,7 +102,7 @@
 							@forelse(yourCart() as $pro)
 							<div class="order-col">
 								<div> <a title="Product review" href="{{ url('products/'.$pro->product->id.'/view') }}"> {{ isset($pro->product->name) != null ? $pro->product->name  : 'NULL'}} <i class="fa fa-external-link"></i> </a></div>
-								<div>${{ isset($pro->product->price) !=null ? $pro->product->price : 'NULL'}}</div>
+								<div>${{ isset($pro->product->selling_price) !=null ? $pro->product->selling_price : 'NULL'}}</div>
 							</div>
 							@empty
 							<div class="alert alert-info alert-dismissible text-center">

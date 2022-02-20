@@ -68,7 +68,7 @@
                     @endauth
                     @endif
                 </ul>
-
+ 
 
                 <ul class="header-links pull-right">
 
@@ -134,7 +134,7 @@
                                     No data
                                     @endforelse
                                 </select>
-                                <input name="search" class="input" placeholder="Search here" required value="{{ old('search') }}">
+                                <input name="search" class="input" placeholder="Search here" required value="{{ request()->search }}">
                                 <button type="submit" title="Search" class="search-btn">Search</button>
                             </form>
                         </div>

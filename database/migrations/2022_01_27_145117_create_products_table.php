@@ -40,7 +40,9 @@ class CreateProductsTable extends Migration
             $table->integer('created_by')->unsigned()->nullable();
             $table->foreign('created_by')->references('id')->on('users');
 
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
+            
 
             // $table->integer('price');
             // $table->string('img');

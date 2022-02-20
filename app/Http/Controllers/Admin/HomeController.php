@@ -9,6 +9,7 @@ use App\Models\Admin\Product;
 use App\Models\Frontend\Cart;
 use App\Models\Frontend\Order;
 use App\Models\Frontend\Wishlist;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 
@@ -31,9 +32,20 @@ class HomeController extends Controller
         $all_product = Product::all()->count();
         $users = User::all()->except(userId())->count();
         $Categories = Category::all()->count();
-        $sold_todye = Order::where('status', 4)->whereDate('created_at', '=', date('Y-m-d'))->sum('price');
+        $sold_todye = Order::where('status', 3)->orwhere('orders.status', 4)->whereDate('created_at', '=', date('Y-m-d'))->sum('price');
         $cart = Cart::all()->count();
         $wishlist = Wishlist::all()->count();
+        $sales = Order::where('status', 3)->orwhere('status',4)->select(
+          
+            DB::raw('MONTH(created_at) as month'),
+            DB::raw('SUM(price) as sum'),
+        )->groupBy('month')->get();
+       $sum = array();
+      
+       foreach($sales as $sal){
+            $sum= $sal->month;
+       }
+
         
         return view('admin.index',compact(
             'canceled_orders',
@@ -47,6 +59,8 @@ class HomeController extends Controller
             'sold_todye',
             'cart',
             'wishlist',
+            'sales',
+            'sum',
         ));
     }
 }
