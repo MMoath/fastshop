@@ -19,7 +19,7 @@ class ProductController extends Controller
     }//end  function __construct
 
     public function index(){
-        $products = Product::paginate(paginate_conut);
+        $products = Product::orderby('id', 'desc')->paginate(paginate_conut);
         return view('admin.products.index',compact('products'));
     }//end function index
 

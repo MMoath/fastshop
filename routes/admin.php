@@ -1,11 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\Admin\HomeController;
-use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\StatisticController;
+
 
 
 
@@ -68,6 +71,12 @@ Route::group(["namespace"=>"Admin"],function(){
 
     });
 
+    Route::group(["prefix" => "statistics"], function () {
+        Route::get('/', [StatisticController::class, 'index'])->name('admin.statistics');
+     
+    });
+
 
 });
+
 

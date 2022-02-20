@@ -24,8 +24,9 @@ class HomeController extends Controller
      */
     public function index(){
    
-        $canceled_orders = Order::where('status',0)->count();
+       
         $new_orders = Order::where('status', 1)->count();
+        $canceled_orders = Order::where('status', 0)->count();
         $processing_orders = Order::where('status', 2)->count();
         $shipped_orders = Order::where('status', 3)->count();
         $delivered_orders = Order::where('status', 4)->count();

@@ -8,6 +8,7 @@ use App\Models\Admin\Category;
 use App\Models\User;
 use App\Models\Admin\Product;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 // use Illuminate\Support\Facades\DB;
 // use App\Models\User;
 
@@ -23,7 +24,7 @@ class SettingController extends Controller
     }
 
     public function categoryIndex(){
-        $Category = Category::paginate(10);
+        $Category = Category::orderby('id','desc')->paginate(10);
         return view('admin.settings.categories.index',compact('Category'));
         
     }
@@ -31,17 +32,22 @@ class SettingController extends Controller
     public function categoryCreate(Request $request){
         $this->validate($request, [
             'name' => ['required', 'string', 'max:190', 'min:3', 'unique:categories,name'],
-            'picture' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg'],
+            'picture' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg'],
             'description' => ['nullable', 'string', 'max:190', 'min:5',],
             'notes' => ['nullable','string', 'max:190', 'min:5',]
         ]);
 
-        $image = time() . '.' . $request->picture->extension();
-        $request->picture->move(public_path('imges\categories'), $image);
+        if($request->picture != null){
+            $image = time() . '.' . $request->picture->extension();
+            $request->picture->move(public_path('imges\categories'), $image);
+        }else{
+            $image = 'default.jpg';
+        }
+       
         Category::create([
             'name' => $request['name'],
             'picture' =>  $image,
-            'description' => $request['description'],
+            'description' => $request['description'], 
             'notes' => $request['notes'],
             'created_by' => Auth::user()->id,
         ]);
@@ -56,7 +62,14 @@ class SettingController extends Controller
             $alert = alert('error', 'The item has links, you cant delete','sweet');
             return redirect()->route('Categories')->with($alert);
         }else{
-            Category::find($id)->delete();
+
+            $category = Category::find($id);
+            if($category->picture != 'default.jpg'){
+                $thumbnail_path = public_path() . '\imges\categories' . '/' . $category->picture; // name of image
+                File::delete($thumbnail_path); // delete yhumbnail from Storage
+
+            }
+            $category->delete();
             $alert = alert('success', 'Operation accomplished successfully','toast');
             return redirect()->route('Categories')->with($alert);
         }   

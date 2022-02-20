@@ -92,6 +92,15 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.statistics') }}" class="nav-link">
+                        <i class="nav-icon ion ion-stats-bars"></i>
+                        <p>
+                            Statistics
+
+                        </p>
+                    </a>
+                </li>
 
             </ul>
             <div style="position: fixed; bottom:1rem;">

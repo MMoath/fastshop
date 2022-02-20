@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('name')->require();
             $table->text('description')->nullable();
-            $table->string('thumbnail')->require();
+            $table->string('thumbnail')->require()->default('default.jpg');
 
             $table->integer('categories_id')->unsigned()->nullable();
             $table->foreign('categories_id')->references('id')->on('categories');
