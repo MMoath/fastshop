@@ -1,6 +1,6 @@
 @extends('layouts.admin.master')
 @section('conternt_title')
-Products | <a title="add products" href="{{ route('add.products') }}" type="button" class="btn btn-outline-secondary btn-sm"><i class="far fa-plus-square"></i> Add Products </a>
+Products <small><sub>({!! $products->total() !!})</sub></small> | <a title="add products" href="{{ route('admin.products.add') }}" type="button" class="btn btn-outline-secondary btn-sm"><i class="far fa-plus-square"></i> Add Products </a>
 
 @stop
 @section('breadcrumb')
@@ -16,12 +16,12 @@ Products | <a title="add products" href="{{ route('add.products') }}" type="butt
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Products Table</h3>
+                        <h3 class="card-title">ALL Products</h3>
                         <div class="card-tools">
                             <form method="GET" action="{{ route('admin.product.search') }}">
                                 @csrf
                                 <div class="input-group input-group-sm" style="width: 15rem;">
-                                    <input type="text" name="search" class="form-control float-right" placeholder="Search" required value="{{ old('search') }}">
+                                    <input type="text" name="search" class="form-control float-right" placeholder="Search" required value="{{ request()->search }}">
                                     <div class="input-group-append">
                                         <button type="submit" class="btn btn-default">
                                             <i class="fas fa-search"></i>
@@ -94,16 +94,16 @@ Products | <a title="add products" href="{{ route('add.products') }}" type="butt
                                     <td>{{ isset($pro->created_at) ?  $pro->created_at->format('d-M-Y') : ''}}</td>
                                     <td class="text-center">
                                         <div class="btn-group btn-group-sm" role="group" aria-label="Basic outlined ">
-                                            <a href="{{ url('admin/products/'.$pro->id.'/view') }}" title="more..." class="btn btn-outline-info"><i class="far fa-folder-open"></i> View</a>
-                                            <a href="{{ url('admin/products/'.$pro->id.'/edit') }}" title="edit" class="btn btn-outline-warning"><i class="fas fa-edit"></i></a>
-                                            <a href="{{ url('admin/products/'.$pro->id.'/delete') }}" title="delete" class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></a>
+                                            <a href="{{ route('admin.products.show',$pro->id) }}"   title="show"   class="btn btn-outline-info"><i class="fas fa-eye"></i></a>
+                                            <a href="{{ route('admin.products.edit',$pro->id) }}"   title="edit"   class="btn btn-outline-warning"><i class="fas fa-edit"></i></a>
+                                            <a href="{{ route('admin.products.delete',$pro->id) }}" title="delete" class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></a>
                                         </div>
 
                                     </td>
                                 </tr>
                                 @empty
                                 <tr>
-                                    <td class="table-danger" colspan="10">No Data</td>
+                                    <td class="table-danger" colspan="10">No records</td>
 
                                 </tr>
                                 @endforelse
@@ -115,7 +115,7 @@ Products | <a title="add products" href="{{ route('add.products') }}" type="butt
                         <ul class="pagination pagination-sm m-0 float-right">
                             {!! $products->links() !!}
                         </ul>
-                        <p><b>{!! $products->total() !!} </b>row</p>
+                        <p><b>{!! $products->total() !!} </b>records</p>
                     </div>
                 </div>
                 <!-- /.card -->

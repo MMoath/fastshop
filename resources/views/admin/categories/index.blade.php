@@ -28,14 +28,14 @@ Categories <small><sub>({{ $Category->total() }})</sub></small> | <button title=
                 <div class="card">
                     <div class="card-header">
 
-                        <h3 class="card-title">ALL Categories 
+                        <h3 class="card-title">ALL Categories
 
 
                         </h3>
 
                         <div class="card-tools">
                             <div class="input-group input-group-sm" style="width: 15rem;">
-                                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                                <input type="text" name="table_search" class="form-control float-right" placeholder="Search" value="{{ old('search') }}">
                                 <div class="input-group-append">
                                     <button type="submit" class="btn btn-default">
                                         <i class="fas fa-search"></i>
@@ -95,7 +95,7 @@ Categories <small><sub>({{ $Category->total() }})</sub></small> | <button title=
                         <ul class="pagination pagination-sm m-0 float-right">
                             {!! $Category->links() !!}
                         </ul>
-                        <p><b>{!! $Category->total() !!} recordS</b></p>
+                        <p><b>{!! $Category->total() !!} records</b></p>
                     </div>
                 </div>
                 <!-- /.card -->

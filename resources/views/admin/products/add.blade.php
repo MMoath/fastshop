@@ -3,8 +3,8 @@
 @section('breadcrumb')
 <ol class="breadcrumb float-sm-right">
     <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-    <li class="breadcrumb-item active"><a href="{{ route('products') }}">Products</a></li>
-    <li class="breadcrumb-item active">Add Products</li>
+    <li class="breadcrumb-item active"><a href="{{ route('admin.products') }}">Products</a></li>
+    <li class="breadcrumb-item active">Add</li>
 </ol>
 @stop
 @section('content')
@@ -14,7 +14,7 @@
             <!-- left column -->
             <div class="col-md-8  offset-md-2">
                 <!-- general form elements -->
-                <form id="resetForm" method="POST" action="{{ route('create.product') }}" enctype="multipart/form-data">
+                <form id="resetForm" method="POST" action="{{ route('admin.products.create') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="card card-secondary">
                         <!-- <div class="card-header">

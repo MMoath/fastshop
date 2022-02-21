@@ -3,12 +3,12 @@
 @section('breadcrumb')
 <ol class="breadcrumb float-sm-right">
     <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-    <li class="breadcrumb-item active"><a href="{{ route('products') }}">Products</a></li>
-    <li class="breadcrumb-item active">Edit Products</li>
+    <li class="breadcrumb-item active"><a href="{{ route('admin.products') }}">Products</a></li>
+    <li class="breadcrumb-item active">Edit</li>
 </ol>
 @stop
 @section('content')
-<form method="POST" action="{{ route('update.product') }}" enctype="multipart/form-data">
+<form method="POST" action="{{ route('admin.products.update') }}" enctype="multipart/form-data">
     @csrf
     <input name="id" value="{{ $product->id }}" type="hidden">
     <!-- Default box -->

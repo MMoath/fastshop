@@ -3,8 +3,8 @@
 @section('breadcrumb')
 <ol class="breadcrumb float-sm-right">
     <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-    <li class="breadcrumb-item active"><a href="{{ route('products') }}">Products</a></li>
-    <li class="breadcrumb-item active">Show Products</li>
+    <li class="breadcrumb-item active"><a href="{{ route('admin.products') }}">Products</a></li>
+    <li class="breadcrumb-item active">Show</li>
 </ol>
 @stop
 @section('content')
@@ -57,8 +57,8 @@
                 </p>
                 <p><b>Category :</b> {{ isset($product->category->name) !=null ? $product->category->name : 'NULL'}}</p>
                 <p><b>Created by :</b> {{ isset($product ->user->name) != null ? $product ->user->name : 'NULL'}}</p>
-                <p><b>Created at :</b> {{ isset($product->created_at) !=null ? $product->created_at : 'NULL'}}</p>
-                <p><b>Updated at :</b> {{ isset($product ->updated_at) != null ? $product ->updated_at : 'NULL'}}</p>
+                <p><b>Created at :</b> {{ isset($product->created_at) !=null ? $product->created_at->format('d-M-Y , h:i a') : 'NULL'}}</p>
+                <p><b>Updated at :</b> {{ isset($product ->updated_at) != null ? $product ->updated_at->format('d-M-Y , h:i a') : 'NULL'}}</p>
             </div>
         </div>
         <div class="row mt-4">

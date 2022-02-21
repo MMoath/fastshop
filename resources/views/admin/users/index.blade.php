@@ -92,6 +92,7 @@ Users <small><sub>({{ $users->total() }})</sub></small> | <a title=" add users" 
                         <ul class="pagination pagination-sm m-0 float-right">
                             {!! $users->links() !!}
                         </ul>
+                        <p><b>{!! $users->total() !!} records</b></p>
                     </div>
                 </div>
                 <!-- /.card -->

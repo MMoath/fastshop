@@ -61,7 +61,7 @@ class ProductController extends Controller
     public function show($id){
         $product = Product::find($id);
         if($product == null){
-            return redirect()->route('products');
+            return redirect()->route('admin.products');
         }else{
             return view('admin.products.show', compact('product'));
         }    
@@ -79,7 +79,7 @@ class ProductController extends Controller
         } 
         elseif($cart != 0 || $order_details != 0 || $wishlist !=0) {
             $alert = alert('error', 'The product cannot be deleted because it has links', 'sweet');
-            return redirect()->route('products')->with($alert);    
+            return redirect()->route('admin.products')->with($alert);    
         }
         else{
 
@@ -90,9 +90,9 @@ class ProductController extends Controller
             $product->delete();
 
             $alert = alert('success', 'Product deleted successfully', 'toast');
-            return redirect()->route('products')->with($alert);
+            return redirect()->route('admin.products')->with($alert);
         }
-        return redirect()->route('products'); 
+        return redirect()->route('admin.products'); 
     }//end function delete
 
     public function edit($id){
@@ -139,7 +139,7 @@ class ProductController extends Controller
             'status' => $request['status'],
         ]);
         $alert = alert('success', 'Product updated successfully', 'toast');
-        return redirect("admin/products/{$request->id}/edit")->with($alert);
+        return redirect("admin/products/edit/{$request->id}")->with($alert);
     }//end function update
 
     public function search(Request $request){

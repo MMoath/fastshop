@@ -45,7 +45,18 @@ Route::group(["namespace"=>"Admin"],function(){
         Route::post('update', [CategoryController::class, 'update'])->name('admin.categories.update');
         Route::get('{id}/delete', [CategoryController::class, 'delete'])->name('admin.categories.delete');
         Route::get('{id}/edit', [CategoryController::class, 'edit'])->name('admin.categories.edit');
-    }); 
+    });//end of categories
+
+    Route::group(["prefix" => "products"], function () {
+        Route::get('/',[ProductController::class, 'index'])->name('admin.products');
+        Route::get('add',[ProductController::class, 'add'])->name('admin.products.add');
+        Route::POST('create', [ProductController::class, 'create'])->name('admin.products.create');
+        Route::POST('update', [ProductController::class, 'update'])->name('admin.products.update');
+        Route::get('show/{id}',[ProductController::class, 'show'])->name('admin.products.show');
+        Route::get('edit/{id}', [ProductController::class, 'edit'])->name('admin.products.edit');
+        Route::get('delete/{id}', [ProductController::class, 'delete'])->name('admin.products.delete');
+        Route::any('search', [ProductController::class, 'search'])->name('admin.product.search');
+    });//end of products
     
     // Route::group(["prefix" => "settings"], function () {
     //     Route::get('/', [SettingController::class, 'index'])->name('settings');
@@ -57,17 +68,7 @@ Route::group(["namespace"=>"Admin"],function(){
       
     // });
 
-    Route::group(["prefix" => "products"], function () {
-        Route::get('/', [ProductController::class, 'index'])->name('products');
-        Route::get('add', [ProductController::class, 'add'])->name('add.products');
-        Route::POST('create', [ProductController::class, 'create'])->name('create.product');
-        Route::POST('update', [ProductController::class, 'update'])->name('update.product');
-        Route::get('{id}/view', [ProductController::class, 'show']);
-        Route::get('{id}/delete', [ProductController::class, 'delete']);
-        Route::get('{id}/edit', [ProductController::class, 'edit']);
-        Route::any('search',[ProductController::class, 'search'])->name('admin.product.search');
-        
-    });
+
 
     Route::group(["prefix" => "orders"], function () {
         Route::get('/', [OrderController::class, 'index'])->name('admin.orders');
