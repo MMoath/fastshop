@@ -42,20 +42,28 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-
+<!-- 
                 <li class="nav-item">
-                    <a href="{{ route('settings') }}" class="nav-link">
+                    <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-cogs"></i>
                         <p>
                             Settings
                         </p>
                     </a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <a href="{{ route('admin.users') }}" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
                             Users
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.categories') }}" class="nav-link">
+                        <i class="fas fa-circle nav-icon"></i>
+                        <p>
+                            Categories
                         </p>
                     </a>
                 </li>

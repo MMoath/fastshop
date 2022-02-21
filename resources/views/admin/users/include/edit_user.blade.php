@@ -7,7 +7,7 @@
                           <span aria-hidden="true">&times;</span>
                       </button>
                   </div>
-                  <form method="POST" action="{{ route('update.user') }}">
+                  <form method="POST" action="{{ route('admin.users.update') }}">
                       <div class="modal-body">
                           @csrf
                           <input type="hidden" name="id" value="{{ $user->id }}">

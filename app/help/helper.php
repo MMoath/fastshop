@@ -45,14 +45,7 @@ function categories(){
     return  $categories;
 }
 
-/*
-* Function Of GET User Id
-*    
-*/
-function userId(){
-    $user = Auth::user()->id;
-    return  $user;
-}
+
 
 /*
 * Function Of GET User 

@@ -14,7 +14,7 @@
 
     <div class="col-md-8 offset-md-2">
         <!-- general form elements -->
-        <form method="POST" action="{{ route('creat.user') }}" id="selectform">
+        <form method="POST" action="{{ route('admin.users.create') }}" id="selectform">
             @csrf
             <div class="card card-secondary">
                 <!-- <div class="card-header">

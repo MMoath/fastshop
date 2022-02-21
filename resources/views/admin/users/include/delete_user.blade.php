@@ -13,7 +13,7 @@
                       </div>
                   </div>
                   <div class="modal-footer justify-content-between">
-                      <form action="{{ route('delete.user') }}" method="POST">
+                      <form action="{{ route('admin.users.delete') }}" method="POST">
                           @csrf
                           <input type="hidden" name="delete_user" value="{{$user->id}}">
                           <button type="submit" class="btn btn-danger">Yes,delete</button>

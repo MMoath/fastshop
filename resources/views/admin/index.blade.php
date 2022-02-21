@@ -32,7 +32,7 @@
 
                 <i class="fas fa-folder"></i>
             </div>
-            <a href="{{ route('Categories') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="{{ route('admin.categories') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div>
     <!-- ./col -->

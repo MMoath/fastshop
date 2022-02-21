@@ -70,11 +70,11 @@
                             </li>
                             <li class="list-group-item">
                                 <b>Created At</b>
-                                <a class="float-right">{{ $user->created_at ? $user->created_at : 'No data' }}</a>
+                                <a class="float-right">{{ $user->created_at ? $user->created_at->format('d-M-Y , h:i a') : 'No data' }}</a>
                             </li>
                             <li class="list-group-item">
                                 <b>Updated At</b>
-                                <a class="float-right">{{ $user->updated_at ? $user->updated_at : 'No data' }}</a>
+                                <a class="float-right">{{ $user->updated_at ? $user->updated_at->format('d-M-Y , h:i a') : 'No data' }}</a>
                             </li>
                         </ul>
                     </div>

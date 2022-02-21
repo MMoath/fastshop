@@ -15,6 +15,12 @@ use Illuminate\Support\Facades\DB;
 */
 
 
+// Get id of user auth 
+function userId(){
+    $user = Auth::user()->id;
+    return  $user;
+}//end of userId
+
 // Get the Name of status product
 function productStatus(){
     $status_name = 
@@ -27,7 +33,7 @@ function productStatus(){
         '5'=> "comment", // تعليق
     ];
     return $status_name;
-}
+}// end of productStatus
 
 // Move and save thumbnail in DB
 function thumbnail($path_thumbnail, $folder){
