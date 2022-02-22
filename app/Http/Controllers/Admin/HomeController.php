@@ -33,9 +33,9 @@ class HomeController extends Controller
         $all_product = Product::all()->count();
         $users = User::all()->except(userId())->count();
         $Categories = Category::all()->count();
-        $sold_todye = Order::where('status', 3)->orwhere('orders.status', 4)->whereDate('created_at', '=', date('Y-m-d'))->sum('price');
-        $cart = Cart::all()->count();
-        $wishlist = Wishlist::all()->count();
+        // $sold_todye = Order::where('status', 3)->orwhere('orders.status', 4)->whereDate('created_at', '=', date('Y-m-d'))->sum('price');
+        // $cart = Cart::all()->count();
+        // $wishlist = Wishlist::all()->count();
         $sales = Order::where('status', 3)->orwhere('status',4)->select(
           
             DB::raw('MONTH(created_at) as month'),
@@ -57,9 +57,9 @@ class HomeController extends Controller
             'all_product',
             'users',
             'Categories',
-            'sold_todye',
-            'cart',
-            'wishlist',
+            //'sold_todye',
+            //'cart',
+            //'wishlist',
             'sales',
             'sum',
         ));

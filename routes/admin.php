@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\StatisticController;
+use App\Http\Controllers\Admin\SaleController;
 
 
 
@@ -87,6 +88,10 @@ Route::group(["namespace"=>"Admin"],function(){
         Route::get('/', [StatisticController::class, 'index'])->name('admin.statistics');
      
     });
+
+    Route::group(["prefix" => "sales"], function () {
+        Route::get('/', [SaleController::class, 'index'])->name('admin.sales');
+    });//end of sales
 
 
 });

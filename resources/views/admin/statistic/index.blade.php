@@ -144,6 +144,46 @@
                 </div>
                 <!-- /.widget-user -->
             </div>
+            <div class="col-md-4">
+                <!-- Widget: user widget style 2 -->
+                <div class="card card-widget widget-user-2 shadow-sm">
+                    <!-- Add the bg color to the header using any of the bg-* classes -->
+                    <div class="widget-user-header text-center">
+                        <!-- /.widget-user-image -->
+                        <h5><i class="nav-icon fas fa-cart-arrow-down"></i> Cart</h5>
+                    </div>
+                    <div class="card-footer p-0">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link">
+                                   ALL Items In Carts <span class="float-right badge bg-primary"> {{ isset($cart) ? $cart : '' }}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /.widget-user -->
+            </div>
+            <div class="col-md-4">
+                <!-- Widget: user widget style 2 -->
+                <div class="card card-widget widget-user-2 shadow-sm">
+                    <!-- Add the bg color to the header using any of the bg-* classes -->
+                    <div class="widget-user-header text-center">
+                        <!-- /.widget-user-image -->
+                        <h5> <i class="nav-icon fas fa-heart"></i> Wishlist</h5>
+                    </div>
+                    <div class="card-footer p-0">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link">
+                                   ALL Items In Wishlist <span class="float-right badge bg-primary"> {{ isset($wishlist) ? $wishlist : '' }}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /.widget-user -->
+            </div>
         </div>
 
     </div><!-- /.container-fluid -->

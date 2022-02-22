@@ -94,6 +94,15 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.sales') }}" class="nav-link">
+                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <p>
+                            Sales
+
+                        </p>
+                    </a>
+                </li>
 
             </ul>
             <div style="position: fixed; bottom:1rem;">

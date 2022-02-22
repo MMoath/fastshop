@@ -105,6 +105,7 @@ Orders <small><sub>({!! $orders->total() !!})</sub></small>
                             <thead>
                                 <tr>
                                     <th>Order ID</th>
+                                    <th>Customer</th>
                                     <th>Item</th>
                                     <th>Price</th>
                                     <th>Payment Method</th>
@@ -116,9 +117,10 @@ Orders <small><sub>({!! $orders->total() !!})</sub></small>
                             <tbody class="table_over">
                                 @forelse ($orders as $order)
                                 <tr>
-                                    <td>{{ isset($order->id) ? $order->id : 'NULL' }}</td>
+                                    <td>{{ isset($order->id) ? $order->id : '' }}</td>
+                                    <td>{{ isset($order->user->name) ? $order->user->name : '' }}</td>
                                     <td>Item<sub>s</sub> ( {{ isset($order->products) ? $order->products->count() : '0' }} )</td>
-                                    <td> $ {{ isset($order->price) ? $order->price : 'NULL' }}</td>
+                                    <td> $ {{ isset($order->price) ? $order->price : '' }}</td>
                                     <td>
 
                                         @switch($order->payment_method)
@@ -180,7 +182,7 @@ Orders <small><sub>({!! $orders->total() !!})</sub></small>
                                 </tr>
                                 @empty
                                 <tr>
-                                    <td colspan="6">No Data</td>
+                                    <td colspan="8" class="table-danger"><b>No records</b></td>
 
                                 </tr>
                                 @endforelse

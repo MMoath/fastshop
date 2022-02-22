@@ -54,7 +54,7 @@ class ProductController extends Controller
 
         // redirect back with massage 
         $alert = alert('success', 'Product added successfully', 'toast');
-        return redirect()->route('products')->with($alert);
+        return redirect()->route('admin.products')->with($alert);
         
     }//end function create
 

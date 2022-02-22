@@ -41,6 +41,12 @@ class StatisticController extends Controller
         $shipped_orders = Order::where('status', 3)->count();
         $delivered_orders = Order::where('status', 4)->count();
 
+        //Cart
+        $cart = Cart::all()->count();
+
+        //wishlist
+        $wishlist = Wishlist::all()->count();
+
         return view('admin.statistic.index',compact(
             'all_users',
             'available_users',
@@ -55,6 +61,8 @@ class StatisticController extends Controller
             'processing_orders',
             'shipped_orders',
             'delivered_orders',
+            'cart',
+            'wishlist',
 
 
         ));

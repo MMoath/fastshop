@@ -73,7 +73,7 @@ Users <small><sub>({{ $users->total() }})</sub></small> | <a title=" add users" 
                                     <td>{{ isset($user->created_at) ? $user->created_at->format('d-M-Y , h:i a') : '' }}</td>
                                     <td>
                                         <div class="btn-group btn-group-sm" role="group" aria-label="Basic outlined ">
-                                            <a href="{{ route('admin.users.show',$user->id) }}" title="show" class="btn btn-outline-info"><i class="fas fa-eye"></i> Show</a>
+                                            <a href="{{ route('admin.users.show',$user->id) }}" title="show" class="btn btn-outline-info"><i class="fas fa-eye"></i></a>
                                         </div>
 
                                     </td>
