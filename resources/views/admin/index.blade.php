@@ -83,54 +83,7 @@
 
 
 <div class="row">
-    <div class="col-md-3">
-        <!-- Info Boxes Style 2 -->
-        <div class="info-box mb-3 bg-info">
-            <span class="info-box-icon"><i class="fas fa-hourglass"></i></span>
-            <a href="{{ route('admin.type.orders',2) }}" type="button">
-                <div class="info-box-content">
-                    <span class="info-box-text">Processing Orsers</span>
-                    <span class="info-box-number">{{ isset($processing_orders) ? $processing_orders : ''}}</span>
-                </div>
-                <!-- /.info-box-content -->
-            </a>
-        </div>
-        <!-- /.info-box -->
-        <div class="info-box mb-3 bg-success">
-
-            <span class="info-box-icon"><i class="fas fa-truck"></i></span>
-            <a href="{{ route('admin.type.orders',3) }}" type="button">
-                <div class="info-box-content">
-                    <span class="info-box-text">Shipped Orders</span>
-                    <span class="info-box-number">{{ isset($shipped_orders) ? $shipped_orders : ''}}</span>
-                </div>
-                <!-- /.info-box-content -->
-            </a>
-        </div>
-        <!-- /.info-box -->
-        <div class="info-box mb-3 bg-secondary">
-            <span class="info-box-icon"><i class="fas fa-check-double"></i></span>
-            <a href="{{ route('admin.type.orders',4) }}" type="button">
-                <div class="info-box-content">
-                    <span class="info-box-text">Delivered Orders</span>
-                    <span class="info-box-number">{{ isset($delivered_orders) ? $delivered_orders : ''}}</span>
-                </div>
-                <!-- /.info-box-content -->
-            </a>
-        </div>
-        <!-- /.info-box -->
-        <div class="info-box mb-3 bg-danger">
-            <span class="info-box-icon"><i class="fas fa-ban"></i></span>
-            <a href="{{ route('admin.type.orders',0) }}" type="button">
-                <div class="info-box-content">
-                    <span class="info-box-text">Canceled Orders</span>
-                    <span class="info-box-number">{{ isset($canceled_orders) ? $canceled_orders : ''}}</span>
-                </div>
-                <!-- /.info-box-content -->
-            </a>
-        </div>
-        <!-- /.info-box -->
-    </div>
+  
     <div class="col-md-6">
         <div class="card">
             <div class="card-header">

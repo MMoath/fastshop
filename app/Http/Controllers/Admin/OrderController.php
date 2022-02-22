@@ -14,14 +14,22 @@ class OrderController extends Controller
 {
     public function __construct(){
         $this->middleware('auth');
-    }
+    }//end of construct 
 
     public function index(){
-        $orders = Order::orderby('id','desc')->paginate(15);
-        if (!$orders)
-            return abort('404');
-        return view('admin.orders.index', compact('orders'));
-    }
+        $canceled_orders = Order::where('status', 0)->count();
+        $processing_orders = Order::where('status', 2)->count();
+        $shipped_orders = Order::where('status', 3)->count();
+        $delivered_orders = Order::where('status', 4)->count();
+        $orders = Order::orderby('id','desc')->paginate(paginate_conut);
+        return view('admin.orders.index', compact(
+            'orders',
+            'canceled_orders',
+            'processing_orders',
+            'shipped_orders',
+            'delivered_orders',
+        ));
+    }//end of index
 
     public function show($id){
         $order = Order::find($id);

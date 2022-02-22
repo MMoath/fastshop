@@ -10,6 +10,7 @@ class WelcomeController extends Controller
 {
  
     public function index(){
+        //dd(topSellingProducts());
         
        
         $products = Product::orderBy('id', 'desc')->paginate(6);  

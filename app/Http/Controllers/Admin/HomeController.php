@@ -26,10 +26,10 @@ class HomeController extends Controller
    
        
         $new_orders = Order::where('status', 1)->count();
-        $canceled_orders = Order::where('status', 0)->count();
-        $processing_orders = Order::where('status', 2)->count();
-        $shipped_orders = Order::where('status', 3)->count();
-        $delivered_orders = Order::where('status', 4)->count();
+        // $canceled_orders = Order::where('status', 0)->count();
+        // $processing_orders = Order::where('status', 2)->count();
+        // $shipped_orders = Order::where('status', 3)->count();
+        // $delivered_orders = Order::where('status', 4)->count();
         $all_product = Product::all()->count();
         $users = User::all()->except(userId())->count();
         $Categories = Category::all()->count();
@@ -49,11 +49,11 @@ class HomeController extends Controller
 
         
         return view('admin.index',compact(
-            'canceled_orders',
+            //'canceled_orders',
             'new_orders',
-            'processing_orders',
-            'shipped_orders',
-            'delivered_orders',
+            //'processing_orders',
+            //'shipped_orders',
+            //'delivered_orders',
             'all_product',
             'users',
             'Categories',
