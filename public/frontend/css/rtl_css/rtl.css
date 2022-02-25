@@ -1,0 +1,251 @@
+/*----------------------------*\
+	Direction
+\*----------------------------*/
+.rtl{
+  direction: rtl;
+}
+
+
+/*----------------------------*\
+	bootstrap-rtl
+\*----------------------------*/
+.pull-left {
+    float: right!important;
+}
+
+.pull-right {
+    float: left!important;
+}
+
+.modal {
+    direction: rtl;
+}
+
+.close {
+    float: left;
+}
+
+@media (min-width: 992px){
+    .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9 {
+        float: right;
+    }
+}
+
+@media (min-width: 992px){
+    .col-md-push-2 {
+        right: 16.66666667%;
+    }
+}
+
+@media (min-width: 992px){
+    .col-md-pull-5 {
+        right: -41.66666667%;
+       
+}
+
+/*----------------------------*\
+	header
+\*----------------------------*/
+
+.header-links li {
+  margin-left: 15px;
+}
+.header-links li:last-child {
+  margin-right: 0px;
+}
+.header-links li i {
+    margin-left: 5px;
+}
+
+.header-number {
+    direction: ltr!important;
+    float: left;
+    margin-right: 5px;
+}
+
+.header-search form .input-select {
+    margin-right: -4px;
+    border-radius: 0px 40px 40px 0px;
+}
+
+.header-search form .search-btn {
+    margin-right: -4px;
+    border-radius: 40px 0px 0px 40px;
+    
+}
+.logo-col{
+    float: right;
+    
+}
+.header-logo {
+    float: right;
+}
+
+.header-ctn {
+    float: left;
+}
+
+.header-ctn>div>a>.qty {
+    right:50px
+    
+}
+
+.responsive-nav{
+    direction: rtl;
+     float: right;
+
+}
+@media (min-width: 768px){
+.navbar-nav {
+     float: right; 
+}
+}
+
+@media (min-width: 768px){
+.navbar-nav>li {
+    float: right;
+}
+}
+
+.main-nav>li>a {
+    padding: 15px 10px ;
+}
+
+.main-nav>li+li {
+    margin-left: 0px;
+}
+
+
+/*----------------------------*\
+	Content
+\*----------------------------*/
+
+
+.section-title {
+    /* float: right; */
+    direction: rtl;
+}
+
+.products-slick-nav {
+    right:auto; 
+ 
+}
+
+.product .product-img .product-label {
+ left: 15px;
+}
+
+#breadcrumb {
+    direction: rtl;
+}
+
+#breadcrumb .breadcrumb-tree li+li {
+    margin-right: 0px;
+}
+
+#breadcrumb .breadcrumb-tree li+li:before {
+    margin-left: 10px;
+}
+
+#breadcrumb .breadcrumb-header {
+    margin-left: 15px;
+}
+
+.newsletter form .newsletter-btn {
+    direction: rtl;
+}
+
+/*----------------------------*\
+	page store
+\*----------------------------*/
+
+.aside{
+    float:right;
+    direction: rtl;
+}
+
+.input-radio input[type="radio"]+label span, .input-checkbox input[type="checkbox"]+label span {
+    right: 0px;
+}
+
+.input-radio label, .input-checkbox label {
+    padding-right: 20px;
+}
+
+#store{
+    direction: rtl;
+}
+.store-grid {
+    float: left;
+}
+
+.store-sort label {
+    margin-right: 0px;
+}
+
+.input-select {
+    margin-top: 5px;
+}
+
+.pagination {
+    float: left;
+}
+.dropdown-menu { 
+    right: 0;
+    float: right;
+    text-align: right;
+}
+/*----------------------------*\
+	page cart
+\*----------------------------*/
+
+.section-cart{
+    direction: rtl;
+}
+
+.primary-btn-order {
+    float: left;
+}
+
+th {
+    text-align: right;
+}
+
+/*----------------------------*\
+	page search
+\*----------------------------*/
+
+.section-search{
+  direction: rtl;
+}
+
+/*----------------------------*\
+	page order
+\*----------------------------*/
+
+.billing-details {
+    direction: rtl;
+}
+
+.order-details {
+    direction: rtl;
+}
+/*----------------------------*\
+	footer
+\*----------------------------*/
+
+#footer {
+    direction: rtl;
+}
+
+.footer-links li i {
+    margin-left: 15px;
+}
+
+.input {
+    direction: rtl;
+}
+
+
+        
+

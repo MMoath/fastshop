@@ -25,8 +25,8 @@
                             <img src="{{ URL::asset('imges/categories/'.$cat->picture); }}" alt=" {{ $cat->name ? $cat->name : ''}} Collection " style="max-height: 25rem;">
                         </div>
                         <div class="shop-body">
-                            <h3>{{ $cat->name ? $cat->name : ''}}<br>Collection</h3>
-                            <a href="{{ route('category',$cat->id) }}" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+                            <h3>{{ $cat->name ? $cat->name : ''}}<br>{{ __('frontend.collection') }}</h3>
+                            <a href="{{ route('category',$cat->id) }}" class="cta-btn">{{ __('frontend.shop_now') }} <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
             <!-- section title -->
             <div class="col-md-12">
                 <div class="section-title">
-                    <h3 class="title">New Products</h3>
+                    <h3 class="title">{{ __('frontend.new_products') }}</h3>
                     <!-- <div class="section-nav">
                         <ul class="section-tab-nav tab-nav">
                             <li class="active"><a data-toggle="tab" href="#tab1">Laptops</a></li>
@@ -77,17 +77,17 @@
                                 <!-- product -->
                                 @forelse ($products as $pro)
                                 <div class="product">
-                                    <a href="{{ url('products/'.$pro->id.'/view') }}">
+                                    <a href="{{ route('show.products',$pro->id) }}">
                                         <div class="product-img">
                                             <img src="{{ URL::asset('imges/products/'.$pro->thumbnail); }}" alt="{{$pro->name}} photo">
                                             <div class="product-label">
                                                 <!-- <span class="sale">-30%</span> -->
-                                                <span class="new">NEW</span>
+                                                <span class="new">{{ __('frontend.new') }}</span>
                                             </div>
                                         </div>
                                         <div class="product-body">
                                             <p class="product-category">{{ isset($pro->category->name) != null ? $pro->category->name : ''}}</p>
-                                            <h3 class="product-name"><a title="View" href="{{ url('products/'.$pro->id.'/view') }}">{{ $pro->name ? $pro->name : ''}}</a></h3>
+                                            <h3 class="product-name"><a title="{{ __('frontend.show') }}" href="{{ route('show.products',$pro->id) }}">{{ $pro->name ? $pro->name : ''}}</a></h3>
                                             <!-- <del class="product-old-price">$990.00</del> -->
                                             <h4 class="product-price">$ {{ $pro->selling_price ? $pro->selling_price : ''}} </h4>
                                             <div class="product-rating">
@@ -102,18 +102,18 @@
                                             @php $id="$pro->id"; @endphp
                                             <div class="product-btns">
                                                 @if(checkWishlist($id) == "No")
-                                                <button class="add-to-wishlist"><a href="{{ route('add.to.wishlist',$pro->id) }}"><i class="fa fa-heart-o"></i></a><span class="tooltipp">add to wishlist</span></button>
+                                                <button class="add-to-wishlist"><a href="{{ route('add.to.wishlist',$pro->id) }}"><i class="fa fa-heart-o"></i></a><span class="tooltipp">{{ __('frontend.add_to_wishlist') }}</span></button>
                                                 @endif
                                                 @if(checkWishlist($id) == "Yes")
-                                                <button class="add-to-wishlist" disabled><i class="fa fa-heart" style="color: red;"></i><span class="tooltipp">on your wishlist</span></button>
+                                                <button class="add-to-wishlist" disabled><i class="fa fa-heart" style="color: red;"></i><span class="tooltipp">{{ __('frontend.on_your_wishlist') }}</span></button>
                                                 @endif
 
                                                 <!-- <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button> -->
-                                                <button class="quick-view" data-toggle="modal" data-target="#produt{{$id}}"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+                                                <button class="quick-view" data-toggle="modal" data-target="#produt{{$id}}"><i class="fa fa-eye"></i><span class="tooltipp">{{ __('frontend.quick_view') }}</span></button>
                                             </div>
                                         </div>
                                         <div class="add-to-cart">
-                                            <button title="add to cart" class="add-to-cart-btn  "> <a href="{{ route('add.to.cart',$pro->id) }}"> <i class="fa fa-shopping-cart"></i> add to cart</a></button>
+                                            <button title="{{ __('frontend.add_to_cart') }}" class="add-to-cart-btn  "> <a href="{{ route('add.to.cart',$pro->id) }}"> <i class="fa fa-shopping-cart"></i>{{ __('frontend.add_to_cart') }} </a></button>
                                         </div>
 
                                     </a>
@@ -121,8 +121,8 @@
                                 @empty
                                 <div class="alert alert-info alert-dismissible">
                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                    <h5><i class="fa fa-info"></i> NULL!</h5>
-                                    NO data.
+                                    <h5><i class="fa fa-info"></i>{{ __('frontend.null') }}!</h5>
+                                    {{ __('frontend.no_date') }}
                                 </div>
                                 @endforelse
 
@@ -155,7 +155,7 @@
             <!-- section title -->
             <div class="col-md-12">
                 <div class="section-title">
-                    <h3 class="title">Top selling</h3>
+                    <h3 class="title">{{ __('frontend.top_selling') }} </h3>
                     <!-- <div class="section-nav">
                         <ul class="section-tab-nav tab-nav">
                             <li class="active"><a data-toggle="tab" href="#tab1">Laptops</a></li>
@@ -173,8 +173,8 @@
                 <div class="row">
                     <div class="products-tabs">
                         <!-- tab -->
-                        <div id="tab1" class="tab-pane active">
-                            <div class="products-slick" data-nav="#slick-nav-1">
+                        <div id="tab2" class="tab-pane active">
+                            <div class="products-slick" data-nav="#slick-nav-2">
                                 <!-- product -->
                                 @forelse (topSellingProducts() as $pro)
                                 <div class="product">
@@ -183,12 +183,12 @@
                                             <img src="{{ URL::asset('imges/products/'.$pro->thumbnail); }}" alt="{{$pro->name}} photo">
                                             <div class="product-label">
                                                 <!-- <span class="sale">-30%</span> -->
-                                                <span class="new">NEW</span>
+                                                <span class="new">{{ __('frontend.new') }}</span>
                                             </div>
                                         </div>
                                         <div class="product-body">
                                             <p class="product-category">{{ isset($pro->category->name) != null ? $pro->category->name : ''}}</p>
-                                            <h3 class="product-name"><a title="View" href="{{ url('products/'.$pro->id.'/view') }}">{{ $pro->name ? $pro->name : ''}}</a></h3>
+                                            <h3 class="product-name"><a title="{{ __('frontend.show') }}" href="{{ url('products/'.$pro->id.'/view') }}">{{ $pro->name ? $pro->name : ''}}</a></h3>
                                             <!-- <del class="product-old-price">$990.00</del> -->
                                             <h4 class="product-price">$ {{ $pro->selling_price ? $pro->selling_price : ''}} </h4>
                                             <div class="product-rating">
@@ -203,18 +203,18 @@
                                             @php $id="$pro->id"; @endphp
                                             <div class="product-btns">
                                                 @if(checkWishlist($id) == "No")
-                                                <button class="add-to-wishlist"><a href="{{ route('add.to.wishlist',$pro->id) }}"><i class="fa fa-heart-o"></i></a><span class="tooltipp">add to wishlist</span></button>
+                                                <button class="add-to-wishlist"><a href="{{ route('add.to.wishlist',$pro->id) }}"><i class="fa fa-heart-o"></i></a><span class="tooltipp">{{ __('frontend.add_to_wishlist') }}</span></button>
                                                 @endif
                                                 @if(checkWishlist($id) == "Yes")
-                                                <button class="add-to-wishlist" disabled><i class="fa fa-heart" style="color: red;"></i><span class="tooltipp">on your wishlist</span></button>
+                                                <button class="add-to-wishlist" disabled><i class="fa fa-heart" style="color: red;"></i><span class="tooltipp">{{ __('frontend.on_your_wishlist') }}</span></button>
                                                 @endif
 
                                                 <!-- <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button> -->
-                                                <button class="quick-view" data-toggle="modal" data-target="#produt{{$id}}"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+                                                <button class="quick-view" data-toggle="modal" data-target="#produt{{$id}}"><i class="fa fa-eye"></i><span class="tooltipp">{{ __('frontend.quick_view') }}</span></button>
                                             </div>
                                         </div>
                                         <div class="add-to-cart">
-                                            <button title="add to cart" class="add-to-cart-btn  "> <a href="{{ route('add.to.cart',$pro->id) }}"> <i class="fa fa-shopping-cart"></i> add to cart</a></button>
+                                            <button title="{{ __('frontend.add_to_cart') }}" class="add-to-cart-btn  "> <a href="{{ route('add.to.cart',$pro->id) }}"> <i class="fa fa-shopping-cart"></i> {{ __('frontend.add_to_cart') }}</a></button>
                                         </div>
 
                                     </a>
@@ -222,8 +222,8 @@
                                 @empty
                                 <div class="alert alert-info alert-dismissible">
                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                    <h5><i class="fa fa-info"></i> NULL!</h5>
-                                    NO data.
+                                    <h5><i class="fa fa-info"></i> {{ __('frontend.null') }}!</h5>
+                                    {{ __('frontend.no_date') }}
                                 </div>
                                 @endforelse
 
@@ -231,7 +231,7 @@
 
 
                             </div>
-                            <div id="slick-nav-1" class="products-slick-nav"></div>
+                            <div id="slick-nav-2" class="products-slick-nav"></div>
                         </div>
                         <!-- /tab -->
                     </div>

@@ -39,7 +39,7 @@ Table OF Contents
 8 > PRODUCT DETAILS PAGE
 ------ Product view
 ------ Product details
------- Product tab
+------ Product tabss
 9 > CHECKOUT PAGE
 10 > NEWSLETTER
 11 > FOOTER
@@ -434,13 +434,11 @@ textarea.input {
 }
 
 .header-links li a {
-  /* color: #FFF; */
-  color: #8D99AE;
+  color: #FFF;
 }
 
 .header-links li a:hover {
-  /* color: #D10024; */
-  color: #FFF;
+  color: #D10024;
 }
 
 .header-links li i {

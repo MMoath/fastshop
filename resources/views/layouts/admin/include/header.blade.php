@@ -7,6 +7,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Fast Shop</title>
 
+    @if (app()->getLocale() == 'ar')
+    <link rel="stylesheet" href="{{ asset('admin/dist/css/rtl_css/font-awesome-rtl.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/dist/css/rtl_css/AdminLTE-rtl.min.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Cairo:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('admin/dist/css/rtl_css/bootstrap-rtl.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/dist/css/rtl_css/rtl.css') }}">
+
+    <style>
+        body,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Cairo', sans-serif !important;
+        }
+    </style>
+    @else
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
@@ -41,6 +60,10 @@
             white-space: nowrap;
         }
     </style>
+    @endif
+
+
+
 
 </head>
 
@@ -57,7 +80,7 @@
                     <a title="Home" href="{{ route('admin.home') }}" class="nav-link" data-toggle="tooltip" data-placement="top">Home</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a title="Switch to Front-End" href="{{ route('welcome') }}" class="nav-link" data-toggle="tooltip" data-placement="top"> <i class="fas fa-retweet"></i> Front-End</a>
+                    <a target="_blank"  title="Switch to Front-End" href="{{ route('welcome') }}" class="nav-link" data-toggle="tooltip" data-placement="top"> <i class="fas fa-retweet"></i> Front-End</a>
                 </li>
                 @if (Route::has('login'))
                 @auth

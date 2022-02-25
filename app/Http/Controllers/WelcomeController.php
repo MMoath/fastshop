@@ -18,7 +18,7 @@ class WelcomeController extends Controller
         return view('frontend.index',compact('products', 'active_nav'));
     }
 
-    public function viewProduct($id){
+    public function showProduct($id){
         $product = Product::where('id',$id)->first();
         if(!$product)
             return abort('404');
@@ -28,6 +28,7 @@ class WelcomeController extends Controller
         $active_nav = "0";
         return view('frontend.product', compact( 'active_nav','product', 'category'));
     }
+    
 
     public function store(Request $request){
 

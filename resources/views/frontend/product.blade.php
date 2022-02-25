@@ -9,8 +9,8 @@
 		<div class="row">
 			<div class="col-md-12">
 				<ul class="breadcrumb-tree">
-					<li><a href="{{ route('welcome') }}">Home</a></li>
-					<li><a href="{{ route('category',$product->category->id) }}">{{ isset( $product->category->name) !=null ?  $product->category->name : 'NULL'}}</a></li>
+					<li><a href="{{ route('welcome') }}">{{ __('frontend.home') }}</a></li>
+					<li><a href="{{ route('category',$product->category->id) }}">{{ isset( $product->category->name) !=null ?  $product->category->name : ''}}</a></li>
 					<li class="active"><b>{{ $product->name}}</b></li>
 				</ul>
 			</div>
@@ -22,7 +22,7 @@
 <!-- /BREADCRUMB -->
 
 <!-- SECTION -->
-<div class="section">
+<div class="section rtl">
 	<!-- container -->
 	<div class="container">
 		<!-- row -->
@@ -74,7 +74,7 @@
 			<!-- Product details -->
 			<div class="col-md-5">
 				<div class="product-details">
-					<h2 class="product-name">{{ isset($product->name) !=null ? $product->name : 'NULL'}}</h2>
+					<h2 class="product-name">{{ isset($product->name) !=null ? $product->name : ''}}</h2>
 					<!-- <div>
 						<div class="product-rating">
 							<i class="fa fa-star"></i>
@@ -87,10 +87,10 @@
 					</div> -->
 					<div>
 						<!-- <del class="product-old-price">$990.00</del> -->
-						<h3 class="product-price">$ {{ isset($product->selling_price) !=null ? $product->selling_price : 'NULL'}}</h3>
+						<h3 class="product-price">$ {{ isset($product->selling_price) !=null ? $product->selling_price : ''}}</h3>
 						<!-- <span class="product-available">In Stock</span> -->
 					</div>
-					<p> {{ isset($product->notes) !=null ? $product->notes : 'NULL'}}</p>
+					<p> {{ isset($product->notes) !=null ? $product->notes : ''}}</p>
 
 					<!-- <div class="product-options">
 						<label>
@@ -109,7 +109,9 @@
 
 					<div class="add-to-cart">
 						<div class="qty-label">
-							Qty
+
+							{{ __('frontend.qty') }}
+
 							<div class="input-number">
 								<input type="number" name="qty" value="1">
 								<span class="qty-up">+</span>
@@ -117,28 +119,28 @@
 							</div>
 						</div>
 
-						<button title="add to cart" class="add-to-cart-btn"> <a href="{{ url('cart/'.$product->id.'/add') }}"> <i class="fa fa-shopping-cart"></i> add to cart</a></button>
+						<button title="{{ __('frontend.add_to_cart') }}" class="add-to-cart-btn"> <a href="{{ url('cart/'.$product->id.'/add') }}"> <i class="fa fa-shopping-cart"></i>{{ __('frontend.add_to_cart') }}</a></button>
 
 					</div>
 
 					@php $id="$product->id"; @endphp
 					<ul class="product-btns">
 						@if(checkWishlist($id) == "No")
-						<li><a title="add to wishlist" href="{{ route('add.to.wishlist',$product->id) }}"><i class="fa fa-heart-o"></i> add to wishlist</a></li>
+						<li><a title="{{ __('frontend.add_to_wishlist') }}" href="{{ route('add.to.wishlist',$product->id) }}"><i class="fa fa-heart-o"></i> {{ __('frontend.add_to_wishlist') }}</a></li>
 						@endif
 						@if(checkWishlist($id) == "Yes")
-						<li><i class="fa fa-heart" style="color: red;"></i> On your wishlist </li>
+						<li><i class="fa fa-heart" style="color: red;"></i> {{ __('frontend.on_your_wishlist') }} </li>
 						@endif
 						<!-- <li><a href="#"><i class="fa fa-exchange"></i> add to compare</a></li> -->
 					</ul>
 
 					<ul class="product-links">
-						<li>Category:</li>
+						<li>{{ __('frontend.category') }} : </li>
 						<li><a href="{{ route('category',$product->category->id) }}">{{ isset( $product->category->name) !=null ?  $product->category->name : 'NULL'}}</a></li>
 					</ul>
 
 					<ul class="product-links">
-						<li>Share:</li>
+						<li>{{ __('frontend.share') }} :</li>
 						<li><a href="#"><i class="fa fa-facebook"></i></a></li>
 						<li><a href="#"><i class="fa fa-twitter"></i></a></li>
 						<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
@@ -154,8 +156,8 @@
 				<div id="product-tab">
 					<!-- product tab nav -->
 					<ul class="tab-nav">
-						<li class="active"><a data-toggle="tab" href="#tab1">Description</a></li>
-						<li><a data-toggle="tab" href="#tab2">Notes</a></li>
+						<li class="active"><a data-toggle="tab" href="#tab1">{{ __('frontend.description') }} </a></li>
+						<li><a data-toggle="tab" href="#tab2">{{ __('frontend.notes') }}</a></li>
 						<!-- <li><a data-toggle="tab" href="#tab3">Reviews (3)</a></li> -->
 					</ul>
 					<!-- /product tab nav -->
@@ -166,7 +168,7 @@
 						<div id="tab1" class="tab-pane fade in active">
 							<div class="row">
 								<div class="col-md-12 text-center">
-									<p>{{ isset($product->description) !=null ? $product->description : 'NULL'}}</p>
+									<p>{{ isset($product->description) !=null ? $product->description : ''}}</p>
 								</div>
 							</div>
 						</div>
@@ -176,7 +178,7 @@
 						<div id="tab2" class="tab-pane fade in">
 							<div class="row">
 								<div class="col-md-12 text-center">
-									<p>{{ isset($product->notes) !=null ? $product->description : 'NULL'}}</p>
+									<p>{{ isset($product->notes) !=null ? $product->description : ''}}</p>
 								</div>
 							</div>
 						</div>
@@ -379,7 +381,7 @@
 
 			<div class="col-md-12">
 				<div class="section-title text-center">
-					<h3 class="title">Related Products</h3>
+					<h3 class="title">{{ __('frontend.related_products') }}</h3>
 				</div>
 			</div>
 
@@ -394,7 +396,7 @@
 								@forelse ($category->product->except($product->id) as $pro)
 
 								<div class="col-md-3 col-xs-6">
-									<a href="{{ url('products/'.$pro->id.'/view') }}">
+									<a href="{{ route('show.products',$pro->id) }}">
 										<div class="product">
 											<div class="product-img">
 												<img src="{{ URL::asset('imges/products/'.$pro->thumbnail); }}" alt="{{$pro->name}} photo">
@@ -404,7 +406,7 @@
 											</div>
 											<div class="product-body">
 												<p class="product-category">{{ isset($pro->category->name) != null ? $pro->category->name : ''}}</p>
-												<h3 class="product-name"><a title="View" href="{{ url('products/'.$pro->id.'/view') }}">{{ $pro->name ? $pro->name : ''}}</a></h3>
+												<h3 class="product-name"><a title="{{ __('frontend.show') }}" href="{{ route('show.products',$pro->id) }}">{{ $pro->name ? $pro->name : ''}}</a></h3>
 												<!-- <del class="product-old-price">$990.00</del> -->
 												<h4 class="product-price">$ {{ $pro->selling_price ? $pro->selling_price : ''}}</h4>
 												<div class="product-rating">
@@ -412,20 +414,20 @@
 												@php $id="$pro->id"; @endphp
 												<div class="product-btns">
 													@if(checkWishlist($id) == "No")
-													<button class="add-to-wishlist"><a href="{{ route('add.to.wishlist',$pro->id) }}"><i class="fa fa-heart-o"></i></a><span class="tooltipp">add to wishlist</span></button>
+													<button class="{{ __('frontend.add_to_wishlist') }}"><a href="{{ route('add.to.wishlist',$pro->id) }}"><i class="fa fa-heart-o"></i></a><span class="tooltipp">{{ __('frontend.add_to_wishlist') }}</span></button>
 													@endif
 													@if(checkWishlist($id) == "Yes")
-													<button class="add-to-wishlist" disabled><i class="fa fa-heart" style="color: red;"></i><span class="tooltipp">on your wishlist</span></button>
+													<button class="{{ __('frontend.add_to_wishlist') }}" disabled><i class="fa fa-heart" style="color: red;"></i><span class="tooltipp">{{ __('frontend.add_to_wishlist') }}</span></button>
 													@endif
 
 													<!-- <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button> -->
-													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">{{ __('frontend.quick_view') }}</span></button>
 												</div>
 											</div>
 
 
 											<div class="add-to-cart">
-												<button title="add to cart" class="add-to-cart-btn"> <a href="{{ url('cart/'.$pro->id.'/add') }}"> <i class="fa fa-shopping-cart"></i> add to cart</a></button>
+												<button title="{{ __('frontend.add_to_cart') }}" class="add-to-cart-btn"> <a href="{{ url('cart/'.$pro->id.'/add') }}"> <i class="fa fa-shopping-cart"></i> {{ __('frontend.add_to_cart') }}</a></button>
 											</div>
 
 
@@ -436,8 +438,8 @@
 								@empty
 								<div class="alert alert-info alert-dismissible">
 									<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-									<h5><i class="fa fa-info"></i> NULL!</h5>
-									NO data.
+									<h5><i class="fa fa-info"></i> {{ __('frontend.null') }}!</h5>
+									{{ __('frontend.no_date') }}
 								</div>
 								@endforelse
 

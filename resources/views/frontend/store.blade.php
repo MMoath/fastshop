@@ -8,8 +8,8 @@
 		<div class="row">
 			<div class="col-md-12">
 				<ul class="breadcrumb-tree">
-					<li><a href="{{ route('welcome') }}">Home</a></li>
-					<li class="active">Store</li>
+					<li><a href="{{ route('welcome') }}">{{ __('frontend.home') }}</a></li>
+					<li class="active">{{ __('frontend.store') }}</li>
 				</ul>
 			</div>
 		</div>
@@ -30,7 +30,7 @@
 			<div id="aside" class="col-md-3">
 				<!-- aside Widget -->
 				<div class="aside">
-					<h3 class="aside-title">Categories</h3>
+					<h3 class="aside-title"> {{ __('frontend.categories') }}</h3>
 					<div class="checkbox-filter">
 						<form method="POST" action="{{ route('store') }}">
 							@csrf
@@ -38,7 +38,7 @@
 								<input name="category" value="all" type="checkbox" id="category-all" onchange="this.form.submit();" {{  $ck == 'all' ? 'checked' : ''}}>
 								<label for="category-all">
 									<span></span>
-									All Categories
+									{{ __('frontend.all_categories') }}
 									<small>( {{ count(categories()) }} )</small>
 								</label>
 							</div>
@@ -61,8 +61,9 @@
 						@empty
 						<div class="alert alert-info alert-dismissible text-center">
 							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-							<h5><i class="fa fa-info"></i> NULL!</h5>
-							NO data.
+							<h5><i class="fa fa-info"></i> {{ __('frontend.null') }}!</h5>
+							{{ __('frontend.no_date') }}.
+
 						</div>
 						@endforelse
 					</div>
@@ -86,7 +87,7 @@
 						</label> -->
 
 						<label>
-							Show:
+							{{ __('frontend.show') }}:
 							<form method="POST" action="{{ route('store') }}">
 								@csrf
 
@@ -139,27 +140,28 @@
 									@php $id="$pro->id"; @endphp
 									<div class="product-btns">
 										@if(checkWishlist($id) == "No")
-										<button class="add-to-wishlist"><a href="{{ route('add.to.wishlist',$pro->id) }}"><i class="fa fa-heart-o"></i></a><span class="tooltipp">add to wishlist</span></button>
+										<button class="add-to-wishlist"><a href="{{ route('add.to.wishlist',$pro->id) }}"><i class="fa fa-heart-o"></i></a><span class="tooltipp">{{ __('frontend.add_to_wishlist') }}</span></button>
 										@endif
 										@if(checkWishlist($id) == "Yes")
-										<button class="add-to-wishlist" disabled><i class="fa fa-heart" style="color: red;"></i><span class="tooltipp">on your wishlist</span></button>
+										<button class="add-to-wishlist" disabled><i class="fa fa-heart" style="color: red;"></i><span class="tooltipp">{{ __('frontend.on_your_wishlist') }}</span></button>
 										@endif
 
 										<!-- <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button> -->
-										<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+										<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">{{ __('frontend.quick_view') }}</span></button>
 									</div>
 								</div>
 								<div class="add-to-cart">
-									<button title="add to cart" class="add-to-cart-btn"> <a href="{{ url('cart/'.$pro->id.'/add') }}"> <i class="fa fa-shopping-cart"></i> add to cart</a></button>
+									<button title="add to cart" class="add-to-cart-btn"> <a href="{{ url('cart/'.$pro->id.'/add') }}"> <i class="fa fa-shopping-cart"></i>{{ __('frontend.add_to_cart') }}</a></button>
 								</div>
 							</a>
 						</div>
 					</div>
 					@empty
-					<div class="alert alert-info alert-dismissible">
+					<div class="alert alert-info alert-dismissible text-center">
 						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-						<h5><i class="fa fa-info"></i> NULL!</h5>
-						NO data.
+						<h5><i class="fa fa-info"></i> {{ __('frontend.null') }}!</h5>
+
+						{{ __('frontend.no_date') }}.
 					</div>
 					@endforelse
 					<!-- /product -->

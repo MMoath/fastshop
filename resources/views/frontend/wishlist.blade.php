@@ -8,10 +8,10 @@
 		<!-- row -->
 		<div class="row">
 			<div class="col-md-12">
-				<h3 class="breadcrumb-header">Wishlist</h3>
+				<h3 class="breadcrumb-header">{{ __('frontend.wishlist') }}</h3>
 				<ul class="breadcrumb-tree">
-					<li><a href="{{ route('welcome') }}">Home</a></li>
-					<li class="active"><b>Wishlist</b></li>
+					<li><a href="{{ route('welcome') }}">{{ __('frontend.home') }}</a></li>
+					<li class="active"><b>{{ __('frontend.wishlist') }}</b></li>
 				</ul>
 			</div>
 		</div>
@@ -31,13 +31,15 @@
 		<div class="row">
 			<table class="table table-hover table-responsive-sm table-sm border-primary">
 				<thead>
+					@if(count(yourWishlist()) !=0)
 					<tr>
 						<th scope="col"></th>
-						<th scope="col">Product Name</th>
-						<th scope="col">Price</th>
-						<th scope="col">image</th>
-						<th scope="col">Oprations</th>
+						<th scope="col">{{ __('frontend.product_name') }}</th>
+						<th scope="col">{{ __('frontend.price') }}</th>
+						<th scope="col">{{ __('frontend.image') }}</th>
+						<th scope="col">{{ __('frontend.oprations') }}</th>
 					</tr>
+					@endif
 				</thead>
 				<tbody>
 					<?php $number = 0; ?>
@@ -46,12 +48,12 @@
 
 					<tr>
 						<th>{{ $number}}</th>
-						<td><a title="view" href="{{ url('products/'.$pro->product->id.'/view') }}">{{$pro->product->name}} <i class="fa fa-external-link"></i> </a></td>
+						<td><a title="{{ __('frontend.show') }}" href="{{ url('products/'.$pro->product->id.'/view') }}">{{$pro->product->name}} <i class="fa fa-external-link"></i> </a></td>
 						<td>$ {{$pro->product->selling_price}}</td>
 						<td><img src="{{  URL::asset('imges/products/'.$pro->product->thumbnail); }}" alt="" style="max-height:10rem;"></td>
 						<td>
-							<a title="add to cart" type="button" class="btn btn-default btn-sm primary-btn-remove" href="{{ url('cart/'.$pro->product->id.'/add') }}"> <i class="fa fa-shopping-cart"></i> Add To Cart</a>
-							<a title="remove from wishlist" type="button" class="btn btn-default btn-sm primary-btn-remove" href="{{ route('remove.from.wishlist',$pro->id) }}"> <i class="fa fa-minus-square"></i> Remove Wish</a>
+							<a title="{{ __('frontend.add_to_cart') }}" type="button" class="btn btn-default btn-sm primary-btn-remove" href="{{ url('cart/'.$pro->product->id.'/add') }}"> <i class="fa fa-shopping-cart"></i>{{ __('frontend.add_to_cart') }}</a>
+							<a title="{{ __('frontend.remove_from_cart') }}" type="button" class="btn btn-default btn-sm primary-btn-remove" href="{{ route('remove.from.wishlist',$pro->id) }}"> <i class="fa fa-minus-square"></i> {{ __('frontend.remove_from_cart') }}</a>
 
 						</td>
 
@@ -61,8 +63,8 @@
 						<td colspan="5">
 							<div class="alert alert-info alert-dismissible text-center">
 								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-								<h5><i class="fa fa-info"></i> NULL!</h5>
-								NO data.
+								<h5><i class="fa fa-info"></i> {{ __('frontend.null') }}!</h5>
+								{{ __('frontend.no_date') }}
 							</div>
 						</td>
 					</tr>
